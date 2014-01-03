@@ -8,11 +8,27 @@
 
 #import "WBSAppDelegate.h"
 
+#import <AVFoundation/AVFoundation.h>
+#import <TestFlightSDK/TestFlight.h>
+#import <NewRelicAgent/NewRelic.h>
+
+static NSString *const kTestFlightSDKKey = @"0970bc26-64a6-4a0e-9a6d-ae9a223bd210";
+static NSString *const kNewRelicSDKKey = @"AAec230ed311d007bb190cb88a5e5ab2afcbff61e5";
+
+
+
 @implementation WBSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+    [TestFlight takeOff:kTestFlightSDKKey];
+    [NewRelicAgent startWithApplicationToken:kNewRelicSDKKey];
+    
     return YES;
 }
 							

@@ -8,11 +8,11 @@
 
 #import "WBSFantorangenTVViewController.h"
 
-#import <MediaPlayer/MediaPlayer.h>
-
 #import "WBSFantorangenEpisodeManager.h"
 #import "WBSEpisode.h"
 #import "NSMutableArray+WBSQueue.h"
+
+static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewControllerSegue";
 
 
 
@@ -20,7 +20,6 @@
 
 @property (assign, nonatomic, getter = isFirstRun) BOOL firstRun;
 @property (strong, nonatomic) WBSFantorangenEpisodeManager *episodeManager;
-@property (strong, nonatomic) MPMoviePlayerController *moviePlayerController;
 @property (strong, nonatomic) NSArray *episodes;
 @property (strong, nonatomic) NSMutableDictionary *mutableEpisodeURLToEpisode;
 @property (strong, nonatomic) NSMutableArray *episodeQueue;
@@ -41,22 +40,28 @@
     [super viewDidLoad];
     
     self.firstRun = YES;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadStateDidChange:) name:@"MPMoviePlayerLoadStateDidChangeNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackStateDidChange:) name:@"MPMoviePlayerPlaybackDidFinishNotification" object:nil];
-    
-    MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] init];
-    moviePlayerController.allowsAirPlay = YES;
-    moviePlayerController.movieSourceType = MPMovieSourceTypeStreaming;
-    moviePlayerController.view.frame = self.view.bounds;
-    [self.view addSubview:moviePlayerController.view];
-    self.moviePlayerController = moviePlayerController;
-    
+    self.AVPlayerViewController.delegate = self;
+       
     WBSFantorangenEpisodeManager *episodeManager = [[WBSFantorangenEpisodeManager alloc] init];
     episodeManager.delegate = self;
     [episodeManager beginEpisodeUpdates];
     self.episodeManager = episodeManager;
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kWBSAVPlayerViewControllerSegue]) {
+        self.AVPlayerViewController = segue.destinationViewController;
+
+        [self addChildViewController:self.AVPlayerViewController];
+        ((UIViewController *)segue.destinationViewController).view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        [self.view addSubview:((UIViewController *)segue.destinationViewController).view];
+        [segue.destinationViewController didMoveToParentViewController:self];
+        
+    }
+}
+
+
 
 - (void)episodeRefresh:(NSURL *)episodeURL
 {
@@ -74,45 +79,33 @@
 
 - (void)startPlaying
 {
-    [self.moviePlayerController stop];
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
     WBSEpisode *episode = [self.episodeQueue dequeue];
     NSString *episodeTitle = episode.title;
     self.title = episodeTitle;
     
     NSURL *videoURL = episode.videoURL;
-    self.moviePlayerController.movieSourceType = MPMovieSourceTypeStreaming;
-    self.moviePlayerController.contentURL = videoURL;
-    [self.moviePlayerController prepareToPlay];
+    self.AVPlayerViewController.URL = videoURL;
     
     NSLog(@"%@ - %@", episodeTitle, videoURL);
 }
 
 
 
-- (void)loadStateDidChange:(id)sender
+#pragma mark - WBSAVPlayerViewControllerDelegate
+- (void)playerItemReadyToPlay:(id)sender
 {
-    if ((self.moviePlayerController.loadState & MPMovieLoadStatePlayable) == MPMovieLoadStatePlayable ||
-        (self.moviePlayerController.loadState & MPMovieLoadStatePlaythroughOK) == MPMovieLoadStatePlaythroughOK) {
-        [self.moviePlayerController play];
-    }
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
+    [self.AVPlayerViewController play:self];
 }
 
-
-
-#pragma mark - MPMoviePlayerPlaybackDidFinishNotification callback
-
-- (void)playbackStateDidChange:(id)sender
+- (void)playerItemDidReachEnd:(id)sender
 {
-    if ([sender isKindOfClass:[NSNotification class]]) {
-        NSNotification *concreteNotification = sender;
-        NSDictionary *userInfo = [concreteNotification userInfo];
-        NSInteger finishReason = [[userInfo objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
-        if (finishReason == MPMovieFinishReasonPlaybackEnded) {
-            if ([self.episodeQueue count] > 0) {
-                [self startPlaying];
-            }
-        }
-    }
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+    
+    [self startPlaying];
 }
 
 
