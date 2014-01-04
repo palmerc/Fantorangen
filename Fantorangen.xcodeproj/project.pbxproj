@@ -28,7 +28,6 @@
 		C7BE20541872BD590039F44A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20361872BD590039F44A /* UIKit.framework */; };
 		C7BE205C1872BD590039F44A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7BE205A1872BD590039F44A /* InfoPlist.strings */; };
 		C7BE205E1872BD590039F44A /* FantorangenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE205D1872BD590039F44A /* FantorangenTests.m */; };
-		C7BE20681872BDF90039F44A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20671872BDF90039F44A /* MediaPlayer.framework */; };
 		C7BE207418743BD70039F44A /* NSMutableArray+WBSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE207318743BD70039F44A /* NSMutableArray+WBSQueue.m */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +83,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7BE20681872BDF90039F44A /* MediaPlayer.framework in Frameworks */,
 				C7BE20351872BD590039F44A /* CoreGraphics.framework in Frameworks */,
 				C7BE20371872BD590039F44A /* UIKit.framework in Frameworks */,
 				C7BE20331872BD590039F44A /* Foundation.framework in Frameworks */,
