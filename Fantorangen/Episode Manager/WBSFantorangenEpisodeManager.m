@@ -158,7 +158,8 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
 {
     WBSEpisode *episode = [self.episodeURLToEpisode objectForKey:webViewOperation.episodeURL];
     episode.videoURL = webViewOperation.videoURL;
-    
+    episode.posterURL = webViewOperation.posterURL;
+
     if ([self.delegate respondsToSelector:@selector(episodeRefresh:)]) {
         [self.delegate episodeRefresh:webViewOperation.episodeURL];
     }

@@ -117,7 +117,7 @@
     NSURL *episodeVideoURL = [NSURL URLWithString:episodeVideoURLString];
     self.videoURL = episodeVideoURL;
     
-    NSString *episodePosterURLString = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('playerelement').getAttribute('poster')"];
+    NSString *episodePosterURLString = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('html5-video').getAttribute('poster')"];
     NSURL *episodePosterURL = [NSURL URLWithString:episodePosterURLString];
     self.posterURL = episodePosterURL;
     

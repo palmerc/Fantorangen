@@ -17,14 +17,15 @@ typedef enum {
 
 @interface WBSEpisode : NSObject
 
-@property (strong, nonatomic) NSString *identifier;
-@property (strong, nonatomic) NSString *season;
-@property (strong, nonatomic) NSString *episodeNumber;
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *summary;
-@property (strong, nonatomic) NSURL *episodeURL;
-@property (strong, nonatomic) NSURL *videoURL;
-@property (strong, nonatomic) NSString *transmissionInformation;
+@property (copy, nonatomic) NSString *identifier;
+@property (copy, nonatomic) NSString *season;
+@property (copy, nonatomic) NSString *episodeNumber;
+@property (copy, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *summary;
+@property (copy, nonatomic) NSURL *episodeURL;
+@property (copy, nonatomic) NSURL *videoURL;
+@property (copy, nonatomic) NSURL *posterURL;
+@property (copy, nonatomic) NSString *transmissionInformation;
 @property (assign, nonatomic) WBSEpisodeAvailability availability;
 
 @end
