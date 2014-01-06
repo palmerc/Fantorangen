@@ -36,7 +36,7 @@ static CGFloat kEpisodeTransmissionInformationLabelWidth = 304.0f;
     
     self.episodeNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.episodeSummaryLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.episodeTransmissionInformationLabel.translatesAutoresizingMaskIntoConstraints = NO;    
+    self.episodeTransmissionInformationLabel.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void)layoutSubviews
@@ -44,16 +44,6 @@ static CGFloat kEpisodeTransmissionInformationLabelWidth = 304.0f;
     [super layoutSubviews];
     
     self.episodeSummaryLabel.preferredMaxLayoutWidth = kEpisodeSummaryLabelWidth;
-    
-//    CGFloat cellHeight = [[self class] heightForSummaryWithString:self.episode.summary];
-//    DDLogVerbose(@"Cell height %f", cellHeight);
-//    CGRect episodeTitleDescriptionContainerViewFrame = self.episodeTitleDescriptionContainerView.frame;
-//    episodeTitleDescriptionContainerViewFrame.size.height = cellHeight;
-//    self.episodeTitleDescriptionContainerView.frame = episodeTitleDescriptionContainerViewFrame;
-//    
-//    CGRect episodeDescriptionLabelFrame = self.episodeDescriptionLabel.frame;
-//    episodeDescriptionLabelFrame.size.height = cellHeight;
-//    self.episodeDescriptionLabel.frame = episodeDescriptionLabelFrame;
 }
 
 
@@ -61,17 +51,11 @@ static CGFloat kEpisodeTransmissionInformationLabelWidth = 304.0f;
 {
     _episode = episode;
     
-    DDLogVerbose(@"Expected height: %f", [[self class] heightForCellWithEpisode:self.episode]);
-    
-    NSString *episodeTitle = episode.title;
-    NSRange episodeNumberStartRange = [episodeTitle rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]];
-    NSRange episodeNumberEndRange = [episodeTitle rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@":"]];
-    NSRange episodeNumberRange = NSMakeRange(episodeNumberStartRange.location, episodeNumberEndRange.location - episodeNumberStartRange.location);
-    
-    self.episodeNumberLabel.text = [episodeTitle substringWithRange:episodeNumberRange];
+    self.episodeNumberLabel.text = episode.episodeNumber;
     self.episodeSummaryLabel.text = episode.summary;
     self.episodeTransmissionInformationLabel.text = episode.transmissionInformation;
 }
+
 
 
 + (CGFloat)heightForCellWithEpisode:(WBSEpisode *)episode

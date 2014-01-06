@@ -60,7 +60,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     return [self.episodes count];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     return [self.seasons objectAtIndex:section];
 }
@@ -71,9 +71,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     
     WBSFantorangenEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFantorangenEpisodesTableViewCellReuseIdentifier];
     cell.episode = episode;
-    
-    DDLogVerbose(@"Actual Cell %d:%d, height: %f",  indexPath.section, indexPath.row, CGRectGetHeight(cell.bounds));
-    
+        
     return cell;
 }
 
@@ -81,9 +79,26 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 #pragma mark - UITableViewDelegate
 
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL shouldHighlightRow = NO;
+
+    WBSEpisode *episode = [self.episodes objectAtIndex:indexPath.row];
+    if (episode.availability == kWBSEpisodeAvailabilityAvailable) {
+        shouldHighlightRow = YES;
+    }
+    
+    return shouldHighlightRow;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    WBSEpisode *episode = [self.episodes objectAtIndex:indexPath.row];
+    if (episode.availability == kWBSEpisodeAvailabilityAvailable) {
+        // segue here
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -100,8 +115,6 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     
-    DDLogVerbose(@"Calculated Cell %d:%d, height: %f",  indexPath.section, indexPath.row, height);
-    
     return height;    
 }
 
@@ -112,10 +125,8 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 - (void)episodeRefresh:(NSURL *)episodeURL
 {
     WBSEpisode *episode = [self.episodeManager episodeForURL:episodeURL];
-    if (episode.availability == kWBSEpisodeAvailabilityAvailable) {
-        [self.mutableEpisodeURLToEpisode setObject:episode forKey:episodeURL];
-        [self.tableView reloadData];
-    }
+    [self.mutableEpisodeURLToEpisode setObject:episode forKey:episodeURL];
+    [self.tableView reloadData];
 }
 
 
