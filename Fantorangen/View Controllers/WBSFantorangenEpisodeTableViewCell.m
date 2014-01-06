@@ -36,10 +36,7 @@ static CGFloat kEpisodeTransmissionInformationLabelWidth = 304.0f;
     
     self.episodeNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.episodeSummaryLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.episodeTransmissionInformationLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    self.episodeTitleDescriptionContainerView.backgroundColor = [UIColor redColor];
-    self.episodeSummaryLabel.backgroundColor = [UIColor yellowColor];
+    self.episodeTransmissionInformationLabel.translatesAutoresizingMaskIntoConstraints = NO;    
 }
 
 - (void)layoutSubviews
