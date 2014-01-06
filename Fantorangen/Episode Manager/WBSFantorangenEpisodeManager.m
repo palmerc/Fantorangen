@@ -83,8 +83,18 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     
                     TFHppleElement *headingElement = [episodeElement firstChildWithClassName:@"episode-list-title"];
                     TFHppleElement *episodeLinkTag = [headingElement firstChildWithTagName:@"a"];
+                    TFHppleElement *seasonTag = [[episodeLinkTag childrenWithClassName:@"season-name"] firstObject];
                     NSString *episodeRelativeURLString = [episodeLinkTag objectForKey:@"href"];
                     NSString *title = [episodeLinkTag text];
+                    
+                    NSRange episodeNumberStartRange = [title rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet] options:0];
+                    NSRange episodeNumberEndRange = [title rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@":"] options:0];
+                    NSInteger length = episodeNumberEndRange.location - episodeNumberStartRange.location;
+                    NSRange episodeNumberRange = NSMakeRange(episodeNumberStartRange.location, length);
+                    
+                    NSString *episodeNumber = [title substringWithRange:episodeNumberRange];
+                    
+                    NSString *season = [[seasonTag text] stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
                     
                     NSArray *descriptionElements = [[episodeElement firstChildWithClassName:@"description"] children];
                     NSMutableArray *descriptionComponents = [[NSMutableArray alloc] initWithCapacity:[descriptionElements count]];
@@ -112,6 +122,8 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     WBSEpisode *episode = [[WBSEpisode alloc] init];
                     episode.identifier = episodeIdentifier;
                     episode.episodeURL = [NSURL URLWithString:episodeRelativeURLString relativeToURL:self.NRKTVURL];
+                    episode.season = season;
+                    episode.episodeNumber = episodeNumber;
                     episode.title = title;
                     episode.summary = description;
                     episode.transmissionInformation = transmissionInformation;

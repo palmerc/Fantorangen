@@ -12,7 +12,7 @@
 
 
 
-@interface WBSFantorangenTVViewController : UIViewController <WBSAVPlayerViewControllerDelegate>
+@interface WBSFantorangenEpisodeViewController : UIViewController <WBSAVPlayerViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet WBSAVPlayerViewController *AVPlayerViewController;

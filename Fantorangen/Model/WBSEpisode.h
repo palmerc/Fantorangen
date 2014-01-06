@@ -18,6 +18,8 @@ typedef enum {
 @interface WBSEpisode : NSObject
 
 @property (strong, nonatomic) NSString *identifier;
+@property (strong, nonatomic) NSString *season;
+@property (strong, nonatomic) NSString *episodeNumber;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *summary;
 @property (strong, nonatomic) NSURL *episodeURL;

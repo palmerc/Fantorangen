@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--FantorangenTV View Controller-->
+        <!--Fantorangen Episode View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="WBSFantorangenTVViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="WBSFantorangenEpisodeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZFh-fw-Ei8"/>
                         <viewControllerLayoutGuide type="bottom" id="OpT-3v-eiz"/>
@@ -34,7 +34,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="988" y="41"/>
+            <point key="canvasLocation" x="1476" y="41"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uJy-si-pJ8">
@@ -47,12 +47,116 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Knc-fu-FyX"/>
+                        <segue destination="f67-LM-nzZ" kind="relationship" relationship="rootViewController" id="3db-g4-P5r"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fch-Vb-muT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="481" y="41"/>
+        </scene>
+        <!--Fantorangen Episodes View Controller-->
+        <scene sceneID="UQ5-3l-c5P">
+            <objects>
+                <viewController id="f67-LM-nzZ" customClass="WBSFantorangenEpisodesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Orw-jv-9U9"/>
+                        <viewControllerLayoutGuide type="bottom" id="xKP-RS-ogq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GZl-9V-vVh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="weR-Gn-0S8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FantorangenEpisodesTableViewCellReuseIdentifier" id="jdy-io-YSi" customClass="WBSFantorangenEpisodeTableViewCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="58"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jdy-io-YSi" id="5Dd-IZ-Gib">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yz4-Xe-CTB" userLabel="Container View">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeC-Tp-1F8" userLabel="Episode Title Label">
+                                                            <rect key="frame" x="0.0" y="0.0" width="29" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="29" id="vWM-mU-WFI"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="267" translatesAutoresizingMaskIntoConstraints="NO" id="G6C-iA-6pi" userLabel="Episode Description Label">
+                                                            <rect key="frame" x="37" y="0.0" width="267" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="G6C-iA-6pi" firstAttribute="top" secondItem="Yz4-Xe-CTB" secondAttribute="top" id="1rF-zc-Zfp"/>
+                                                        <constraint firstItem="VeC-Tp-1F8" firstAttribute="top" secondItem="Yz4-Xe-CTB" secondAttribute="top" id="5Ke-gj-mle"/>
+                                                        <constraint firstItem="G6C-iA-6pi" firstAttribute="leading" secondItem="VeC-Tp-1F8" secondAttribute="trailing" constant="8" id="61a-co-hhq"/>
+                                                        <constraint firstItem="G6C-iA-6pi" firstAttribute="leading" secondItem="VeC-Tp-1F8" secondAttribute="trailing" constant="8" id="9CQ-ov-NoK"/>
+                                                        <constraint firstAttribute="trailing" secondItem="G6C-iA-6pi" secondAttribute="trailing" id="Gbh-hi-DPH"/>
+                                                        <constraint firstAttribute="bottom" secondItem="VeC-Tp-1F8" secondAttribute="bottom" id="HU6-Lk-tnH"/>
+                                                        <constraint firstAttribute="bottom" secondItem="G6C-iA-6pi" secondAttribute="bottom" id="LGu-LE-bAM"/>
+                                                        <constraint firstItem="VeC-Tp-1F8" firstAttribute="leading" secondItem="Yz4-Xe-CTB" secondAttribute="leading" id="qSo-sI-zHM"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transmission Information" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2S9-Zw-ZOa" userLabel="Transmission Information Label">
+                                                    <rect key="frame" x="8" y="37" width="304" height="12"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Yz4-Xe-CTB" firstAttribute="top" secondItem="5Dd-IZ-Gib" secondAttribute="top" constant="8" id="CLf-Ci-ogE"/>
+                                                <constraint firstAttribute="trailing" secondItem="Yz4-Xe-CTB" secondAttribute="trailing" constant="8" id="QIs-C4-q28"/>
+                                                <constraint firstItem="Yz4-Xe-CTB" firstAttribute="leading" secondItem="5Dd-IZ-Gib" secondAttribute="leading" constant="8" id="SfJ-ki-Mh3"/>
+                                                <constraint firstItem="2S9-Zw-ZOa" firstAttribute="top" secondItem="Yz4-Xe-CTB" secondAttribute="bottom" constant="8" id="X12-BD-FVB"/>
+                                                <constraint firstAttribute="bottom" secondItem="2S9-Zw-ZOa" secondAttribute="bottom" constant="8" id="nye-73-CJA"/>
+                                                <constraint firstItem="2S9-Zw-ZOa" firstAttribute="top" secondItem="Yz4-Xe-CTB" secondAttribute="bottom" constant="8" id="qqf-Za-BNF"/>
+                                                <constraint firstItem="2S9-Zw-ZOa" firstAttribute="leading" secondItem="5Dd-IZ-Gib" secondAttribute="leading" constant="8" id="x5r-U0-4EO"/>
+                                                <constraint firstAttribute="trailing" secondItem="2S9-Zw-ZOa" secondAttribute="trailing" constant="8" id="xLx-YC-tEs"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="episodeNumberLabel" destination="VeC-Tp-1F8" id="LWs-2V-A2k"/>
+                                            <outlet property="episodeSummaryLabel" destination="G6C-iA-6pi" id="4Ss-jq-gHz"/>
+                                            <outlet property="episodeTitleDescriptionContainerView" destination="Yz4-Xe-CTB" id="Pjm-dt-KwO"/>
+                                            <outlet property="episodeTransmissionInformationLabel" destination="2S9-Zw-ZOa" id="4KP-FI-9le"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="f67-LM-nzZ" id="opa-2l-gG1"/>
+                                    <outlet property="delegate" destination="f67-LM-nzZ" id="MTV-Bp-zbB"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="h0X-wq-jVV">
+                        <barButtonItem key="rightBarButtonItem" title="Shuffle" id="YmK-bC-Hud"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="weR-Gn-0S8" id="mNi-kM-wSy"/>
+                        <segue destination="vXZ-lx-hvc" kind="push" identifier="FantorangenEpisodeViewControllerSegue" id="yKY-Z3-OvS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="opU-AT-IYT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="970" y="41"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="Ono-70-6Nt">
@@ -97,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fC7-IB-vxZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1517" y="41"/>
+            <point key="canvasLocation" x="1971" y="41"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

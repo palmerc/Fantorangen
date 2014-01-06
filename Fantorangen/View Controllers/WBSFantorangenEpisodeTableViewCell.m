@@ -1,0 +1,119 @@
+//
+//  WBSFantorangenEpisodeTableViewCell.m
+//  Fantorangen
+//
+//  Created by Cameron Palmer on 04.01.14.
+//  Copyright (c) 2014 Wolf and Bear Studios. All rights reserved.
+//
+
+#import "WBSFantorangenEpisodeTableViewCell.h"
+
+#import "WBSEpisode.h"
+
+NSString *const kFantorangenEpisodesTableViewCellReuseIdentifier = @"FantorangenEpisodesTableViewCellReuseIdentifier";
+
+static CGFloat kCellPadding = 8.0f;
+static CGFloat kEpisodeSummaryLabelWidth = 267.0f;
+static CGFloat kEpisodeTransmissionInformationLabelWidth = 304.0f;
+
+
+
+@interface WBSFantorangenEpisodeTableViewCell ()
++ (UIFont *)episodeSummaryLabelFont;
++ (UIFont *)episodeTransmissionInformationLabelFont;
+
+@end
+
+
+
+@implementation WBSFantorangenEpisodeTableViewCell
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+
+    self.translatesAutoresizingMaskIntoConstraints = YES;
+    
+    self.episodeNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.episodeSummaryLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.episodeTransmissionInformationLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.episodeTitleDescriptionContainerView.backgroundColor = [UIColor redColor];
+    self.episodeSummaryLabel.backgroundColor = [UIColor yellowColor];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    self.episodeSummaryLabel.preferredMaxLayoutWidth = kEpisodeSummaryLabelWidth;
+    
+//    CGFloat cellHeight = [[self class] heightForSummaryWithString:self.episode.summary];
+//    DDLogVerbose(@"Cell height %f", cellHeight);
+//    CGRect episodeTitleDescriptionContainerViewFrame = self.episodeTitleDescriptionContainerView.frame;
+//    episodeTitleDescriptionContainerViewFrame.size.height = cellHeight;
+//    self.episodeTitleDescriptionContainerView.frame = episodeTitleDescriptionContainerViewFrame;
+//    
+//    CGRect episodeDescriptionLabelFrame = self.episodeDescriptionLabel.frame;
+//    episodeDescriptionLabelFrame.size.height = cellHeight;
+//    self.episodeDescriptionLabel.frame = episodeDescriptionLabelFrame;
+}
+
+
+- (void)setEpisode:(WBSEpisode *)episode
+{
+    _episode = episode;
+    
+    DDLogVerbose(@"Expected height: %f", [[self class] heightForCellWithEpisode:self.episode]);
+    
+    NSString *episodeTitle = episode.title;
+    NSRange episodeNumberStartRange = [episodeTitle rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]];
+    NSRange episodeNumberEndRange = [episodeTitle rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@":"]];
+    NSRange episodeNumberRange = NSMakeRange(episodeNumberStartRange.location, episodeNumberEndRange.location - episodeNumberStartRange.location);
+    
+    self.episodeNumberLabel.text = [episodeTitle substringWithRange:episodeNumberRange];
+    self.episodeSummaryLabel.text = episode.summary;
+    self.episodeTransmissionInformationLabel.text = episode.transmissionInformation;
+}
+
+
++ (CGFloat)heightForCellWithEpisode:(WBSEpisode *)episode
+{
+    CGFloat summaryLabelHeight = [[self class] heightForSummaryWithString:episode.summary];
+    CGFloat transmissionInformationLabelHeight = [[self class] heightForTransmissionInformationWithString:episode.transmissionInformation];
+    
+    return summaryLabelHeight + transmissionInformationLabelHeight + 3.0f * kCellPadding;
+}
+
++ (CGFloat)heightForSummaryWithString:(NSString *)summary
+{
+    NSDictionary *summaryAttributes = @{NSFontAttributeName: [[self class] episodeSummaryLabelFont]};
+    CGRect summaryRect = [summary boundingRectWithSize:CGSizeMake(kEpisodeSummaryLabelWidth, MAXFLOAT)
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                            attributes:summaryAttributes
+                                               context:nil];
+    
+    return ceilf(summaryRect.size.height);
+}
+
++ (CGFloat)heightForTransmissionInformationWithString:(NSString *)transmissionInformation
+{
+    NSDictionary *transmissionInformationAttributes = @{NSFontAttributeName: [[self class] episodeTransmissionInformationLabelFont]};
+    CGRect transmissionInformationRect = [transmissionInformation boundingRectWithSize:CGSizeMake(kEpisodeTransmissionInformationLabelWidth, MAXFLOAT)
+                                                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                                                            attributes:transmissionInformationAttributes
+                                                                               context:nil];
+    return ceilf(transmissionInformationRect.size.height);
+}
+
++ (UIFont *)episodeSummaryLabelFont
+{
+    return [UIFont systemFontOfSize:17.0f];
+}
+
++ (UIFont *)episodeTransmissionInformationLabelFont
+{
+    return [UIFont systemFontOfSize:10.0f];
+}
+
+@end

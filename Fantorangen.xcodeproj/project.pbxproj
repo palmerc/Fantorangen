@@ -13,9 +13,8 @@
 		C779F52218763507002E75EF /* WBSFantorangenEpisodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51318763507002E75EF /* WBSFantorangenEpisodeManager.m */; };
 		C779F52318763507002E75EF /* WBSFantorangenWebViewOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51518763507002E75EF /* WBSFantorangenWebViewOperation.m */; };
 		C779F52418763507002E75EF /* WBSEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51818763507002E75EF /* WBSEpisode.m */; };
-		C779F52518763507002E75EF /* Fantorangen-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C779F51A18763507002E75EF /* Fantorangen-Info.plist */; };
 		C779F52618763507002E75EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51C18763507002E75EF /* main.m */; };
-		C779F52718763507002E75EF /* WBSFantorangenTVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51F18763507002E75EF /* WBSFantorangenTVViewController.m */; };
+		C779F52718763507002E75EF /* WBSFantorangenEpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51F18763507002E75EF /* WBSFantorangenEpisodeViewController.m */; };
 		C779F52D1876355F002E75EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C779F5291876355F002E75EF /* Main.storyboard */; };
 		C779F52E1876355F002E75EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C779F52B1876355F002E75EF /* InfoPlist.strings */; };
 		C7BE20331872BD590039F44A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20321872BD590039F44A /* Foundation.framework */; };
@@ -29,6 +28,8 @@
 		C7BE205C1872BD590039F44A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7BE205A1872BD590039F44A /* InfoPlist.strings */; };
 		C7BE205E1872BD590039F44A /* FantorangenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE205D1872BD590039F44A /* FantorangenTests.m */; };
 		C7BE207418743BD70039F44A /* NSMutableArray+WBSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE207318743BD70039F44A /* NSMutableArray+WBSQueue.m */; };
+		C7DBBC7618786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */; };
+		C7DBBC79187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +58,8 @@
 		C779F51A18763507002E75EF /* Fantorangen-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Fantorangen-Info.plist"; sourceTree = "<group>"; };
 		C779F51B18763507002E75EF /* Fantorangen-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Fantorangen-Prefix.pch"; sourceTree = "<group>"; };
 		C779F51C18763507002E75EF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C779F51E18763507002E75EF /* WBSFantorangenTVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSFantorangenTVViewController.h; sourceTree = "<group>"; };
-		C779F51F18763507002E75EF /* WBSFantorangenTVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenTVViewController.m; sourceTree = "<group>"; };
+		C779F51E18763507002E75EF /* WBSFantorangenEpisodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSFantorangenEpisodeViewController.h; sourceTree = "<group>"; };
+		C779F51F18763507002E75EF /* WBSFantorangenEpisodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodeViewController.m; sourceTree = "<group>"; };
 		C779F52A1876355F002E75EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C779F52C1876355F002E75EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C7BE202F1872BD590039F44A /* Fantorangen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fantorangen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +77,10 @@
 		C7BE20671872BDF90039F44A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C7BE207218743BD70039F44A /* NSMutableArray+WBSQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+WBSQueue.h"; sourceTree = "<group>"; };
 		C7BE207318743BD70039F44A /* NSMutableArray+WBSQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+WBSQueue.m"; sourceTree = "<group>"; };
+		C7DBBC7418786FC500DC6C22 /* WBSFantorangenEpisodesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSFantorangenEpisodesViewController.h; sourceTree = "<group>"; };
+		C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodesViewController.m; sourceTree = "<group>"; };
+		C7DBBC77187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSFantorangenEpisodeTableViewCell.h; sourceTree = "<group>"; };
+		C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodeTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +152,12 @@
 		C779F51D18763507002E75EF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C779F51E18763507002E75EF /* WBSFantorangenTVViewController.h */,
-				C779F51F18763507002E75EF /* WBSFantorangenTVViewController.m */,
+				C779F51E18763507002E75EF /* WBSFantorangenEpisodeViewController.h */,
+				C779F51F18763507002E75EF /* WBSFantorangenEpisodeViewController.m */,
+				C7DBBC7418786FC500DC6C22 /* WBSFantorangenEpisodesViewController.h */,
+				C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */,
+				C7DBBC77187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.h */,
+				C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -320,7 +329,6 @@
 				C779F52D1876355F002E75EF /* Main.storyboard in Resources */,
 				C779F52E1876355F002E75EF /* InfoPlist.strings in Resources */,
 				C7BE204B1872BD590039F44A /* Images.xcassets in Resources */,
-				C779F52518763507002E75EF /* Fantorangen-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,10 +385,12 @@
 				C7BE207418743BD70039F44A /* NSMutableArray+WBSQueue.m in Sources */,
 				C779F52118763507002E75EF /* WBSAVPlayerViewController.m in Sources */,
 				C779F52218763507002E75EF /* WBSFantorangenEpisodeManager.m in Sources */,
+				C7DBBC7618786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m in Sources */,
 				C7BE20431872BD590039F44A /* WBSAppDelegate.m in Sources */,
 				C779F52618763507002E75EF /* main.m in Sources */,
+				C7DBBC79187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m in Sources */,
 				C779F52018763507002E75EF /* WBSAVPlayerView.m in Sources */,
-				C779F52718763507002E75EF /* WBSFantorangenTVViewController.m in Sources */,
+				C779F52718763507002E75EF /* WBSFantorangenEpisodeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
