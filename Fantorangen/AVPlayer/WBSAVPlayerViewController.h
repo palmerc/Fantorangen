@@ -22,11 +22,18 @@
 
 @property (copy, nonatomic) NSURL *URL;
 @property (weak, nonatomic) IBOutlet WBSAVPlayerView *playbackView;
+
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *playButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *pauseButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
+@property (weak, nonatomic) IBOutlet UISlider *scrubber;
 
 - (IBAction)play:(id)sender;
 - (IBAction)pause:(id)sender;
-//- (IBAction)showMetadata:(id)sender;
+- (IBAction)backwards:(id)sender;
+- (IBAction)forwards:(id)sender;
 
 @end
 

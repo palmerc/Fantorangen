@@ -25,19 +25,26 @@ NSString *const kStatusKey         = @"status";
 NSString *const kRateKey           = @"rate";
 NSString *const kCurrentItemKey    = @"currentItem";
 
+
+
 @interface WBSAVPlayerViewController ()
 @property (strong, nonatomic, getter = player) AVPlayer *player;
 @property (strong, nonatomic) AVPlayerItem *playerItem;
 
-@property (strong, nonatomic) UIBarButtonItem *playButton;
-@property (strong, nonatomic) UIBarButtonItem *pauseButton;
-@property (strong, nonatomic) UISlider *scrubber;
+@property (strong, nonatomic) UIToolbar *av_toolbar;
+@property (strong, nonatomic) UIBarButtonItem *av_playButton;
+@property (strong, nonatomic) UIBarButtonItem *av_pauseButton;
+@property (strong, nonatomic) UIBarButtonItem *av_backButton;
+@property (strong, nonatomic) UIBarButtonItem *av_forwardButton;
+@property (strong, nonatomic) UISlider *av_scrubber;
 
 @property (assign, nonatomic) BOOL seekToZeroBeforePlay;
 @property (strong, nonatomic) id timeObserver;
 @property (assign, nonatomic) CGFloat restoreAfterScrubbingRate;
 
 @end
+
+
 
 @interface WBSAVPlayerViewController (Player)
 - (void)removePlayerTimeObserver;
@@ -74,6 +81,7 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
     [self initScrubberTimer];
     
     [self syncPlayPauseButtons];
+    [self syncBackwardsAndForwardsButtons];
     [self syncScrubber];
 }
 
@@ -152,14 +160,30 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 
 - (void)initializeToolbarItems
 {
-    self.playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(play:)];
+    if (self.playButton == nil) {
+        self.av_playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(play:)];
+        self.playButton = self.av_playButton;
+    }
+
+    if (self.backButton == nil) {
+        self.av_backButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(backwards:)];
+        self.backButton = self.av_backButton;
+    }
     
-    self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pause:)];
+    if (self.forwardButton == nil) {
+        self.av_forwardButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(forwards:)];
+        self.forwardButton = self.av_forwardButton;
+    }
+    
+    if (self.pauseButton == nil) {
+        self.av_pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pause:)];
+        self.pauseButton = self.av_pauseButton;
+    }
     
     UIBarButtonItem *LHSFlexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *RHSFlexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    self.toolbar.items = @[LHSFlexibleSpace, self.playButton, RHSFlexibleSpace];
+    self.toolbar.items = @[self.backButton, LHSFlexibleSpace, self.playButton, RHSFlexibleSpace, self.forwardButton];
 }
 
 /* Show the stop button in the movie player controller. */
@@ -195,6 +219,12 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
     }
 }
 
+- (void)syncBackwardsAndForwardsButtons
+{
+    self.backButton.enabled = NO;
+    self.forwardButton.enabled = NO;
+}
+
 - (void)enablePlayerButtons
 {
     self.playButton.enabled = YES;
@@ -207,8 +237,14 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
     self.pauseButton.enabled = NO;
 }
 
+
+
+#pragma mark IBActions
+
 - (IBAction)play:(id)sender
 {
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+    
     /* If we are at the end of the movie, we must seek to the beginning first
      before starting playback. */
     if (self.seekToZeroBeforePlay == YES) {
@@ -223,9 +259,23 @@ static void *AVPlayerDemoPlaybackViewControllerCurrentItemObservationContext = &
 
 - (IBAction)pause:(id)sender
 {
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
     [self.player pause];
         
     [self showPlayButton];
+}
+
+- (IBAction)backwards:(id)sender
+{
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
+}
+
+- (IBAction)forwards:(id)sender
+{
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+    
 }
 
 
