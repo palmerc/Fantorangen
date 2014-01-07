@@ -19,8 +19,11 @@
 
 - (id)dequeue
 {
-    id object = [self objectAtIndex:0];
-    [self removeObjectAtIndex:0];
+    id object = nil;
+    if ([self count] > 0) {
+        object = [self objectAtIndex:0];
+        [self removeObjectAtIndex:0];
+    }
     
     return object;
 }
