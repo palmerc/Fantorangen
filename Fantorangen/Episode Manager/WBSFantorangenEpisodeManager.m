@@ -94,6 +94,9 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     
                     NSString *episodeNumber = [title substringWithRange:episodeNumberRange];
                     
+                    NSRange seriesTitleRange = NSMakeRange(0, episodeNumberStartRange.location);
+                    NSString *seriesTitle = [[title substringWithRange:seriesTitleRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    
                     NSString *season = [[seasonTag text] stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
                     
                     NSArray *descriptionElements = [[episodeElement firstChildWithClassName:@"description"] children];
@@ -124,7 +127,8 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     episode.episodeURL = [NSURL URLWithString:episodeRelativeURLString relativeToURL:self.NRKTVURL];
                     episode.season = season;
                     episode.episodeNumber = episodeNumber;
-                    episode.title = title;
+                    episode.seriesTitle = seriesTitle;
+                    episode.episodeTitle = title;
                     episode.summary = description;
                     episode.transmissionInformation = transmissionInformation;
                     episode.availability = availability;

@@ -20,7 +20,8 @@ typedef enum {
 @property (copy, nonatomic) NSString *identifier;
 @property (copy, nonatomic) NSString *season;
 @property (copy, nonatomic) NSString *episodeNumber;
-@property (copy, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *seriesTitle;
+@property (copy, nonatomic) NSString *episodeTitle;
 @property (copy, nonatomic) NSString *summary;
 @property (copy, nonatomic) NSURL *episodeURL;
 @property (copy, nonatomic) NSURL *videoURL;

@@ -8,8 +8,10 @@
 
 #import "WBSFantorangenEpisodesViewController.h"
 
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "WBSFantorangenEpisodeManager.h"
 #import "WBSEpisode.h"
+#import "WBSFantorangenEpisodesSectionTableViewCell.h"
 #import "WBSFantorangenEpisodeTableViewCell.h"
 
 static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpisodeViewControllerSegue";
@@ -62,7 +64,14 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [self.seasons objectAtIndex:section];
+    WBSFantorangenEpisodesSectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kWBSFantorangenEpisodesSectionTableViewCellReuseIdentifier];
+    
+    WBSEpisode *episode = [self.episodes firstObject];
+    
+    cell.titleLabel.text = episode.seriesTitle;
+    cell.seasonLabel.text = episode.season;
+    [cell.posterImageView setImageWithURL:episode.posterURL];
+    return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,6 +108,25 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     if (episode.availability == kWBSEpisodeAvailabilityAvailable) {
         // segue here
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    WBSEpisode *episode = [self.episodes firstObject];
+    
+    WBSFantorangenEpisodesSectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kWBSFantorangenEpisodesSectionTableViewCellReuseIdentifier];
+    cell.titleLabel.text = episode.seriesTitle;
+    cell.seasonLabel.text = episode.season;
+    [cell.posterImageView setImageWithURL:episode.posterURL];
+    
+    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
+    
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
+    
+    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    
+    return height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -163,7 +191,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     NSArray *episodes = [[self.mutableEpisodeURLToEpisode allValues] sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(id obj1, id obj2) {
         WBSEpisode *episode1 = obj1;
         WBSEpisode *episode2 = obj2;
-        return [episode1.title compare:episode2.title options:NSCaseInsensitiveSearch|NSNumericSearch];
+        return [episode1.episodeTitle compare:episode2.episodeTitle options:NSCaseInsensitiveSearch|NSNumericSearch];
     }];
     
     return episodes;

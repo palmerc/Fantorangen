@@ -30,6 +30,7 @@
 		C7BE207418743BD70039F44A /* NSMutableArray+WBSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE207318743BD70039F44A /* NSMutableArray+WBSQueue.m */; };
 		C7DBBC7618786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */; };
 		C7DBBC79187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */; };
+		C7DBBC7C187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC7B187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodesViewController.m; sourceTree = "<group>"; };
 		C7DBBC77187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSFantorangenEpisodeTableViewCell.h; sourceTree = "<group>"; };
 		C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodeTableViewCell.m; sourceTree = "<group>"; };
+		C7DBBC7A187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSFantorangenEpisodesSectionTableViewCell.h; sourceTree = "<group>"; };
+		C7DBBC7B187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodesSectionTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +159,8 @@
 				C779F51F18763507002E75EF /* WBSFantorangenEpisodeViewController.m */,
 				C7DBBC7418786FC500DC6C22 /* WBSFantorangenEpisodesViewController.h */,
 				C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */,
+				C7DBBC7A187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.h */,
+				C7DBBC7B187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m */,
 				C7DBBC77187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.h */,
 				C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */,
 			);
@@ -390,6 +395,7 @@
 				C779F52618763507002E75EF /* main.m in Sources */,
 				C7DBBC79187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m in Sources */,
 				C779F52018763507002E75EF /* WBSAVPlayerView.m in Sources */,
+				C7DBBC7C187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m in Sources */,
 				C779F52718763507002E75EF /* WBSFantorangenEpisodeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

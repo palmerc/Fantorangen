@@ -28,25 +28,6 @@ static CGFloat kEpisodeTransmissionInformationLabelWidth = 304.0f;
 
 @implementation WBSFantorangenEpisodeTableViewCell
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-
-    self.translatesAutoresizingMaskIntoConstraints = YES;
-    
-    self.episodeNumberLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.episodeSummaryLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.episodeTransmissionInformationLabel.translatesAutoresizingMaskIntoConstraints = NO;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    self.episodeSummaryLabel.preferredMaxLayoutWidth = kEpisodeSummaryLabelWidth;
-}
-
-
 - (void)setEpisode:(WBSEpisode *)episode
 {
     _episode = episode;
