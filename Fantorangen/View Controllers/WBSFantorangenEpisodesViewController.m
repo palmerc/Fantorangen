@@ -14,6 +14,7 @@
 #import "WBSFantorangenEpisodesSectionTableViewCell.h"
 #import "WBSFantorangenEpisodeTableViewCell.h"
 #import "WBSFantorangenEpisodeViewController.h"
+#import "NSArray+RandomOrder.h"
 
 static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpisodeViewControllerSegue";
 
@@ -52,9 +53,16 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kFantorangenEpisodeViewControllerSegue]) {
-        WBSEpisode *episode = sender;
         WBSFantorangenEpisodeViewController *fantorangenEpisodeViewController = segue.destinationViewController;
-        NSArray *episodeQueue = [self episodeQueueFromEpisode:episode randomized:NO];
+
+        NSArray *episodeQueue = nil;
+        if ([sender isKindOfClass:[WBSEpisode class]]) {
+            WBSEpisode *episode = sender;
+            episodeQueue = [self episodeQueueFromEpisode:episode randomized:NO];
+        } else if ([sender isKindOfClass:[NSArray class]]) {
+            episodeQueue = sender;
+        }
+        
         fantorangenEpisodeViewController.episodeQueue = episodeQueue;
     }
 }
@@ -166,6 +174,16 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     WBSEpisode *episode = [self.episodeManager episodeForURL:episodeURL];
     [self.mutableEpisodeURLToEpisode setObject:episode forKey:episodeURL];
     [self.tableView reloadData];
+}
+
+
+#pragma mark - IBActions
+
+- (IBAction)didPressShuffleButton:(id)sender
+{
+    NSArray *randomizedEpisodes = [[self episodes] randomOrder]
+    ;
+    [self performSegueWithIdentifier:kFantorangenEpisodeViewControllerSegue sender:randomizedEpisodes];
 }
 
 

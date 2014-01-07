@@ -197,7 +197,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="h0X-wq-jVV">
-                        <barButtonItem key="rightBarButtonItem" title="Shuffle" id="YmK-bC-Hud"/>
+                        <barButtonItem key="rightBarButtonItem" title="Shuffle" id="YmK-bC-Hud">
+                            <connections>
+                                <action selector="didPressShuffleButton:" destination="f67-LM-nzZ" id="DMW-vp-qXU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="weR-Gn-0S8" id="mNi-kM-wSy"/>

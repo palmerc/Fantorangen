@@ -31,6 +31,7 @@
 		C7DBBC7618786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */; };
 		C7DBBC79187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */; };
 		C7DBBC7C187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC7B187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m */; };
+		C7F09C60187CAFDC00BCCF11 /* NSArray+RandomOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F09C5F187CAFDC00BCCF11 /* NSArray+RandomOrder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodeTableViewCell.m; sourceTree = "<group>"; };
 		C7DBBC7A187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSFantorangenEpisodesSectionTableViewCell.h; sourceTree = "<group>"; };
 		C7DBBC7B187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodesSectionTableViewCell.m; sourceTree = "<group>"; };
+		C7F09C5E187CAFDC00BCCF11 /* NSArray+RandomOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+RandomOrder.h"; sourceTree = "<group>"; };
+		C7F09C5F187CAFDC00BCCF11 /* NSArray+RandomOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomOrder.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +226,8 @@
 				C7BE204A1872BD590039F44A /* Images.xcassets */,
 				C7BE207218743BD70039F44A /* NSMutableArray+WBSQueue.h */,
 				C7BE207318743BD70039F44A /* NSMutableArray+WBSQueue.m */,
+				C7F09C5E187CAFDC00BCCF11 /* NSArray+RandomOrder.h */,
+				C7F09C5F187CAFDC00BCCF11 /* NSArray+RandomOrder.m */,
 			);
 			path = Fantorangen;
 			sourceTree = "<group>";
@@ -396,6 +401,7 @@
 				C7DBBC79187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m in Sources */,
 				C779F52018763507002E75EF /* WBSAVPlayerView.m in Sources */,
 				C7DBBC7C187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m in Sources */,
+				C7F09C60187CAFDC00BCCF11 /* NSArray+RandomOrder.m in Sources */,
 				C779F52718763507002E75EF /* WBSFantorangenEpisodeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
