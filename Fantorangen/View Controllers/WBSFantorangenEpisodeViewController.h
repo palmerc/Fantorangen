@@ -14,6 +14,8 @@
 
 @interface WBSFantorangenEpisodeViewController : UIViewController <WBSAVPlayerViewControllerDelegate>
 
+@property (weak, nonatomic) NSArray *episodeQueue;
+
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet WBSAVPlayerViewController *AVPlayerViewController;
 

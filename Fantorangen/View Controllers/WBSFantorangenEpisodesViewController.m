@@ -13,8 +13,10 @@
 #import "WBSEpisode.h"
 #import "WBSFantorangenEpisodesSectionTableViewCell.h"
 #import "WBSFantorangenEpisodeTableViewCell.h"
+#import "WBSFantorangenEpisodeViewController.h"
 
 static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpisodeViewControllerSegue";
+
 
 
 @interface WBSFantorangenEpisodesViewController () <WBSFantorangenEpisodeManagerDelegate>
@@ -23,7 +25,6 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 @property (assign, nonatomic, getter = isFirstRun) BOOL firstRun;
 @property (strong, nonatomic) NSMutableDictionary *mutableEpisodeURLToEpisode;
-@property (strong, nonatomic) NSMutableArray *episodeQueue;
 
 @property (strong, nonatomic, readonly) NSArray *seasons;
 @property (strong, nonatomic, readonly) NSArray *episodes;
@@ -46,6 +47,16 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     episodeManager.delegate = self;
     [episodeManager beginEpisodeUpdates];
     self.episodeManager = episodeManager;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kFantorangenEpisodeViewControllerSegue]) {
+        WBSEpisode *episode = sender;
+        WBSFantorangenEpisodeViewController *fantorangenEpisodeViewController = segue.destinationViewController;
+        NSArray *episodeQueue = [self episodeQueueFromEpisode:episode randomized:NO];
+        fantorangenEpisodeViewController.episodeQueue = episodeQueue;
+    }
 }
 
 
@@ -106,7 +117,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     
     WBSEpisode *episode = [self.episodes objectAtIndex:indexPath.row];
     if (episode.availability == kWBSEpisodeAvailabilityAvailable) {
-        // segue here
+        [self performSegueWithIdentifier:kFantorangenEpisodeViewControllerSegue sender:episode];
     }
 }
 
@@ -197,13 +208,13 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     return episodes;
 }
 
-- (NSMutableArray *)episodeQueue
+- (NSArray *)episodeQueueFromEpisode:(WBSEpisode *)episode randomized:(BOOL)shuffle
 {
-    if (_episodeQueue == nil) {
-        self.episodeQueue = [[NSMutableArray alloc] init];
-    }
-    
-    return _episodeQueue;
+    NSArray *episodes = [self episodes];
+    NSUInteger index = [episodes indexOfObject:episode];
+    NSRange range = NSMakeRange(index, [episodes count] - index);
+    return [episodes subarrayWithRange:range];
 }
+
 
 @end

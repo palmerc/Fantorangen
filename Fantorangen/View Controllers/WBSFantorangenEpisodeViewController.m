@@ -17,6 +17,7 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
 
 
 @interface WBSFantorangenEpisodeViewController () <WBSFantorangenEpisodeManagerDelegate>
+@property (strong, nonatomic) NSMutableArray *mutableEpisodeQueue;
 
 @end
 
@@ -34,6 +35,7 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
     [super viewDidLoad];
     
     self.AVPlayerViewController.delegate = self;
+    [self startPlaying];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -45,7 +47,6 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
         ((UIViewController *)segue.destinationViewController).view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         [self.view addSubview:((UIViewController *)segue.destinationViewController).view];
         [segue.destinationViewController didMoveToParentViewController:self];
-        
     }
 }
 
@@ -55,14 +56,14 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
 {
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
 
-//    WBSEpisode *episode = [self.episodeQueue dequeue];
-//    NSString *episodeTitle = episode.title;
-//    self.title = episodeTitle;
-//    
-//    NSURL *videoURL = episode.videoURL;
-//    self.AVPlayerViewController.URL = videoURL;
+    WBSEpisode *episode = [self.mutableEpisodeQueue dequeue];
+    NSString *episodeTitle = episode.episodeTitle;
+    self.title = episodeTitle;
     
-//    NSLog(@"%@ - %@", episodeTitle, videoURL);
+    NSURL *videoURL = episode.videoURL;
+    self.AVPlayerViewController.URL = videoURL;
+    
+    NSLog(@"%@ - %@", episodeTitle, videoURL);
 }
 
 
@@ -80,6 +81,20 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
     
     [self startPlaying];
+}
+
+
+
+#pragma mark - Getters/Setters
+
+- (NSArray *)episodeQueue
+{
+    return [self.mutableEpisodeQueue copy];
+}
+
+- (void)setEpisodeQueue:(NSArray *)episodeQueue
+{
+    _mutableEpisodeQueue = [episodeQueue mutableCopy];
 }
 
 @end
