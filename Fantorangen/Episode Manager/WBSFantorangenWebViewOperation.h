@@ -17,6 +17,7 @@
 @property (weak, nonatomic) id <WBSWebViewOperationDelegate> delegate;
 @property (copy, nonatomic) NSURL *episodeURL;
 @property (copy, nonatomic, readonly) NSURL *videoURL;
+@property (copy, nonatomic, readonly) NSURL *posterURL;
 
 - (id)initWithURL:(NSURL *)episodeURL;
 

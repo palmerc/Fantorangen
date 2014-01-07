@@ -83,8 +83,21 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     
                     TFHppleElement *headingElement = [episodeElement firstChildWithClassName:@"episode-list-title"];
                     TFHppleElement *episodeLinkTag = [headingElement firstChildWithTagName:@"a"];
+                    TFHppleElement *seasonTag = [[episodeLinkTag childrenWithClassName:@"season-name"] firstObject];
                     NSString *episodeRelativeURLString = [episodeLinkTag objectForKey:@"href"];
                     NSString *title = [episodeLinkTag text];
+                    
+                    NSRange episodeNumberStartRange = [title rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet] options:0];
+                    NSRange episodeNumberEndRange = [title rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@":"] options:0];
+                    NSInteger length = episodeNumberEndRange.location - episodeNumberStartRange.location;
+                    NSRange episodeNumberRange = NSMakeRange(episodeNumberStartRange.location, length);
+                    
+                    NSString *episodeNumber = [title substringWithRange:episodeNumberRange];
+                    
+                    NSRange seriesTitleRange = NSMakeRange(0, episodeNumberStartRange.location);
+                    NSString *seriesTitle = [[title substringWithRange:seriesTitleRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    
+                    NSString *season = [[seasonTag text] stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
                     
                     NSArray *descriptionElements = [[episodeElement firstChildWithClassName:@"description"] children];
                     NSMutableArray *descriptionComponents = [[NSMutableArray alloc] initWithCapacity:[descriptionElements count]];
@@ -112,7 +125,10 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     WBSEpisode *episode = [[WBSEpisode alloc] init];
                     episode.identifier = episodeIdentifier;
                     episode.episodeURL = [NSURL URLWithString:episodeRelativeURLString relativeToURL:self.NRKTVURL];
-                    episode.title = title;
+                    episode.season = season;
+                    episode.episodeNumber = episodeNumber;
+                    episode.seriesTitle = seriesTitle;
+                    episode.episodeTitle = title;
                     episode.summary = description;
                     episode.transmissionInformation = transmissionInformation;
                     episode.availability = availability;
@@ -146,7 +162,8 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
 {
     WBSEpisode *episode = [self.episodeURLToEpisode objectForKey:webViewOperation.episodeURL];
     episode.videoURL = webViewOperation.videoURL;
-    
+    episode.posterURL = webViewOperation.posterURL;
+
     if ([self.delegate respondsToSelector:@selector(episodeRefresh:)]) {
         [self.delegate episodeRefresh:webViewOperation.episodeURL];
     }

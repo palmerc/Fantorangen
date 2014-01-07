@@ -17,6 +17,8 @@
 @property (assign, nonatomic, getter = isFinished) BOOL finished;
 
 @property (copy, nonatomic, readwrite) NSURL *videoURL;
+@property (copy, nonatomic, readwrite) NSURL *posterURL;
+
 @property (strong, nonatomic) UIWebView *webView;
 
 @end
@@ -114,6 +116,10 @@
     NSString *episodeVideoURLString = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('playerelement').getAttribute('data-media')"];
     NSURL *episodeVideoURL = [NSURL URLWithString:episodeVideoURLString];
     self.videoURL = episodeVideoURL;
+    
+    NSString *episodePosterURLString = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('html5-video').getAttribute('poster')"];
+    NSURL *episodePosterURL = [NSURL URLWithString:episodePosterURLString];
+    self.posterURL = episodePosterURL;
     
     if ([self.delegate respondsToSelector:@selector(webViewOperationDidFinish:)]) {
         [self.delegate webViewOperationDidFinish:self];
