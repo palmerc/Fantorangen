@@ -18,6 +18,7 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
 
 @interface WBSFantorangenEpisodeViewController () <WBSFantorangenEpisodeManagerDelegate>
 @property (strong, nonatomic) NSMutableArray *mutableEpisodeQueue;
+@property (strong, nonatomic) WBSAVPlayerViewController *AVPlayerViewController;
 
 @end
 
@@ -34,7 +35,14 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
 {
     [super viewDidLoad];
     
-    self.AVPlayerViewController.delegate = self;
+    WBSAVPlayerViewController *playerViewController = [[WBSAVPlayerViewController alloc] init];
+    playerViewController.view.frame = self.view.bounds;
+    playerViewController.delegate = self;
+    [self addChildViewController:playerViewController];
+    [self.view addSubview:playerViewController.view];
+    [playerViewController didMoveToParentViewController:self];
+    self.AVPlayerViewController = playerViewController;
+
     [self startPlaying];
 }
 
@@ -43,10 +51,6 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
     if ([segue.identifier isEqualToString:kWBSAVPlayerViewControllerSegue]) {
         self.AVPlayerViewController = segue.destinationViewController;
 
-        [self addChildViewController:self.AVPlayerViewController];
-        ((UIViewController *)segue.destinationViewController).view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-        [self.view addSubview:((UIViewController *)segue.destinationViewController).view];
-        [segue.destinationViewController didMoveToParentViewController:self];
     }
 }
 

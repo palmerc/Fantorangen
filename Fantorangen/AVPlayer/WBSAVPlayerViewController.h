@@ -11,6 +11,7 @@
 @class AVPlayer;
 @class AVPlayerItem;
 @class WBSAVPlayerView;
+@class WBSScrubberView;
 
 @protocol WBSAVPlayerViewControllerDelegate;
 
@@ -28,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *pauseButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
-@property (weak, nonatomic) IBOutlet UISlider *scrubber;
+@property (weak, nonatomic) IBOutlet WBSScrubberView *scrubberView;
 
 - (IBAction)play:(id)sender;
 - (IBAction)pause:(id)sender;

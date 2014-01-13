@@ -42,4 +42,15 @@
     playerLayer.videoGravity = fillMode;
 }
 
+- (CGRect)getVideoContentFrame {
+    AVPlayerLayer *avLayer = (AVPlayerLayer *)[self layer];
+    
+    return avLayer.videoRect;
+}
+
+- (CGSize)intrinsicContentSize
+{
+    return [self getVideoContentFrame].size;
+}
+
 @end

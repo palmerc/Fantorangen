@@ -25,6 +25,7 @@ PODS:
     - CocoaLumberjack/Core
   - hpple (0.2.0)
   - NewRelicAgent (3.158)
+  - Reveal-iOS-SDK (1.0.3)
   - TestFlightSDK (2.2.0-noadid-beta)
 
 DEPENDENCIES:
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - CocoaLumberjack
   - hpple
   - NewRelicAgent
+  - Reveal-iOS-SDK
   - TestFlightSDK
 
 SPEC CHECKSUMS:
@@ -39,6 +41,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: be87113f649942f020a37c061c58009b6ee5ff68
   hpple: dde62f905f482bbec50186280d1a1be2c881241b
   NewRelicAgent: 41d90334087c0fef327c9d62a9d89116cfebd30c
+  Reveal-iOS-SDK: f2525cb560a564fdc086316e89ec45ced6977fd3
   TestFlightSDK: 64f333f91ab9d11985e6c4c188a71b22cc528097
 
 COCOAPODS: 0.29.0
