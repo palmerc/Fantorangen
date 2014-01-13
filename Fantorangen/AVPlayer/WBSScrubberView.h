@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface WBSScrubberView : UIView
+@property (strong, nonatomic, readonly) UISlider *slider;
+@property (strong, nonatomic, readonly) UIProgressView *progressView;
 
 @end
