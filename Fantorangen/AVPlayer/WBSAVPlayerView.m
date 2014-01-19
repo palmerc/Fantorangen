@@ -12,9 +12,14 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+static NSString *const kPlayerItemPresentationSizeKey = @"presentationSize";
+
 
 
 @interface WBSAVPlayerView ()
+@property (weak, nonatomic) AVPlayerItem *currentPlayerItem;
+@property (assign, nonatomic) CGSize presentationSize;
+
 @end
 
 
@@ -33,6 +38,16 @@
 
 - (void)setPlayer:(AVPlayer *)player
 {
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
+    AVPlayerItem *playerItem = player.currentItem;
+    if (self.currentPlayerItem != playerItem) {
+        [self.currentPlayerItem removeObserver:self forKeyPath:kPlayerItemPresentationSizeKey];
+
+        [player.currentItem addObserver:self forKeyPath:kPlayerItemPresentationSizeKey options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial context:nil];
+        self.currentPlayerItem = playerItem;
+    }
+
     [(AVPlayerLayer *)[self layer] setPlayer:player];
 }
 
@@ -50,7 +65,17 @@
 
 - (CGSize)intrinsicContentSize
 {
-    return [self getVideoContentFrame].size;
+    return self.presentationSize;
+}
+     
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([object isKindOfClass:[AVPlayerItem class]]) {
+        AVPlayerItem *playerItem = object;
+        self.presentationSize = playerItem.presentationSize;
+        
+        [self invalidateIntrinsicContentSize];
+    }
 }
 
 @end

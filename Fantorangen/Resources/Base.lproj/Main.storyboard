@@ -17,17 +17,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5n-a5-6Rb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="OpT-3v-eiz" firstAttribute="top" secondItem="V5n-a5-6Rb" secondAttribute="bottom" id="BKR-Ux-fyt"/>
                             <constraint firstAttribute="trailing" secondItem="V5n-a5-6Rb" secondAttribute="trailing" id="KAR-nP-t0D"/>
-                            <constraint firstItem="V5n-a5-6Rb" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="PlY-zt-pvB"/>
+                            <constraint firstItem="V5n-a5-6Rb" firstAttribute="top" secondItem="ZFh-fw-Ei8" secondAttribute="bottom" id="ReM-U6-4fS"/>
                             <constraint firstItem="V5n-a5-6Rb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="fYE-w3-0Tg"/>
-                            <constraint firstItem="OpT-3v-eiz" firstAttribute="top" secondItem="V5n-a5-6Rb" secondAttribute="bottom" id="fa5-1I-08c"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dnu-El-fhf"/>

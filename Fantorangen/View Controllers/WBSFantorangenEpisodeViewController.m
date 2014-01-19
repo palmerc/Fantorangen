@@ -36,10 +36,13 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
     [super viewDidLoad];
     
     WBSAVPlayerViewController *playerViewController = [[WBSAVPlayerViewController alloc] init];
-    playerViewController.view.frame = self.view.bounds;
+    UIView *playerViewControllerView = playerViewController.view;
+    playerViewControllerView.translatesAutoresizingMaskIntoConstraints = NO;
     playerViewController.delegate = self;
     [self addChildViewController:playerViewController];
-    [self.view addSubview:playerViewController.view];
+    [self.containerView addSubview:playerViewControllerView];
+    [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[playerViewControllerView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(playerViewControllerView)]];
+    [self.containerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[playerViewControllerView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(playerViewControllerView)]];
     [playerViewController didMoveToParentViewController:self];
     self.AVPlayerViewController = playerViewController;
 

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "WBSScrubberView.h"
+
 @class AVPlayer;
 @class AVPlayerItem;
 @class WBSAVPlayerView;
@@ -17,11 +19,12 @@
 
 
 
-@interface WBSAVPlayerViewController : UIViewController
+@interface WBSAVPlayerViewController : UIViewController <WBScrubberViewDelegate>
 
 @property (weak, nonatomic) id <WBSAVPlayerViewControllerDelegate> delegate;
 
 @property (copy, nonatomic) NSURL *URL;
+@property (weak, nonatomic) IBOutlet UIView *playbackViewContainerView;
 @property (weak, nonatomic) IBOutlet WBSAVPlayerView *playbackView;
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
