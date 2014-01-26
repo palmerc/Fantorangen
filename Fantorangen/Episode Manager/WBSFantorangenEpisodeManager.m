@@ -80,12 +80,14 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                 for (TFHppleElement *episodeElement in episodeElements) {
                     NSDictionary *attributes = [episodeElement attributes];
                     NSString *episodeIdentifier = [attributes objectForKey:@"data-episode"];
-                    
-                    TFHppleElement *headingElement = [episodeElement firstChildWithClassName:@"episode-list-title"];
-                    TFHppleElement *episodeLinkTag = [headingElement firstChildWithTagName:@"a"];
-                    TFHppleElement *seasonTag = [[episodeLinkTag childrenWithClassName:@"season-name"] firstObject];
+                    TFHppleElement *episodeLinkTag = [episodeElement firstChildWithTagName:@"a"];
+                    TFHppleElement *airElement = [episodeLinkTag firstChildWithClassName:@"air"];
+
+                    TFHppleElement *headingElement = [airElement firstChildWithClassName:@"episode-list-title"];
+                    NSString *title = [headingElement text];
+
+                    TFHppleElement *seasonTag = [[headingElement childrenWithClassName:@"season-name"] firstObject];
                     NSString *episodeRelativeURLString = [episodeLinkTag objectForKey:@"href"];
-                    NSString *title = [episodeLinkTag text];
                     
                     NSRange episodeNumberStartRange = [title rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet] options:0];
                     NSRange episodeNumberEndRange = [title rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@":"] options:0];
@@ -99,7 +101,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     
                     NSString *season = [[seasonTag text] stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
                     
-                    NSArray *descriptionElements = [[episodeElement firstChildWithClassName:@"description"] children];
+                    NSArray *descriptionElements = [[airElement firstChildWithClassName:@"description"] children];
                     NSMutableArray *descriptionComponents = [[NSMutableArray alloc] initWithCapacity:[descriptionElements count]];
                     
                     for (TFHppleElement *descriptionElement in descriptionElements) {
@@ -107,7 +109,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     }
                     NSString *description = [descriptionComponents componentsJoinedByString:@" "];
                     
-                    NSArray *divs = [episodeElement childrenWithTagName:@"div"];
+                    NSArray *divs = [airElement childrenWithTagName:@"div"];
                     NSString *transmissionInformation = nil;
                     WBSEpisodeAvailability availability = kWBSEpisodeAvailabilityUnavailable;
                     for (TFHppleElement *div in divs) {
@@ -133,7 +135,10 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     episode.transmissionInformation = transmissionInformation;
                     episode.availability = availability;
                     
-                    [self.mutableEpisodeURLToEpisode setObject:episode forKey:episode.episodeURL];
+                    NSURL *episodeURL = episode.episodeURL;
+                    if (episodeURL != nil) {
+                        [self.mutableEpisodeURLToEpisode setObject:episode forKey:episode.episodeURL];
+                    }
                 }
                 
                 [self fetchVideoURLs];
