@@ -17,30 +17,36 @@ PODS:
   - AFNetworking/Serialization (2.1.0)
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
-  - CocoaLumberjack (1.8.0):
+  - CocoaLumberjack (1.8.1):
     - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.8.0)
-  - CocoaLumberjack/Extensions (1.8.0):
+  - CocoaLumberjack/Core (1.8.1)
+  - CocoaLumberjack/Extensions (1.8.1):
     - CocoaLumberjack/Core
   - hpple (0.2.0)
-  - NewRelicAgent (3.184)
+  - ISO8601DateFormatter (0.7)
+  - NewRelicAgent (3.256)
+  - OCMock (2.2.3)
   - Reveal-iOS-SDK (1.0.3)
-  - TestFlightSDK (2.2.1-beta)
+  - TestFlightSDK (3.0.0)
 
 DEPENDENCIES:
-  - AFNetworking
-  - CocoaLumberjack
-  - hpple
-  - NewRelicAgent
-  - Reveal-iOS-SDK
-  - TestFlightSDK
+  - AFNetworking (~> 2.1.0)
+  - CocoaLumberjack (~> 1.8.1)
+  - hpple (~> 0.2.0)
+  - ISO8601DateFormatter (~> 0.7)
+  - NewRelicAgent (~> 3.196)
+  - OCMock (~> 2.2.3)
+  - Reveal-iOS-SDK (~> 1.0.3)
+  - TestFlightSDK (~> 3.0.0)
 
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
-  CocoaLumberjack: 6ed94046d2ca7fde03a73b3d01b8cfc56574b314
+  CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
   hpple: dde62f905f482bbec50186280d1a1be2c881241b
-  NewRelicAgent: 1b5ca2856251e651ff502aed6d31b868cab96dae
+  ISO8601DateFormatter: 00944e437ea647f4244454ce8809d313861d08de
+  NewRelicAgent: 14ab6b0fd2af34eca7668449b83bf2ae872ec533
+  OCMock: 74e4ddbcef134170dcc844f91c691f13868075d7
   Reveal-iOS-SDK: f2525cb560a564fdc086316e89ec45ced6977fd3
-  TestFlightSDK: 4249c2f70e621bcfbdebf019073169c8fe36be13
+  TestFlightSDK: 71e3e78d3a46144dbad975a4bf80a14dae6a818a
 
 COCOAPODS: 0.29.0

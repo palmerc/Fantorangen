@@ -19,7 +19,7 @@
 
 
 
-@interface WBSAVPlayerViewController : UIViewController <WBScrubberViewDelegate>
+@interface WBSAVPlayerViewController : UIViewController <WBScrubberViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) id <WBSAVPlayerViewControllerDelegate> delegate;
 

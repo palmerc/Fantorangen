@@ -6,9 +6,12 @@
 //  Copyright (c) 2014 Wolf and Bear Studios. All rights reserved.
 //
 
-#import <AVFoundation/AVFoundation.h>
+#import "WBSAVPlayerItem.h"
+
+@import AVFoundation;
 
 @protocol WBSAVPlayerBoxDelegate;
+//http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8
 
 
 
@@ -16,7 +19,12 @@
 @property (weak, nonatomic) id <WBSAVPlayerBoxDelegate> delegate;
 
 @property (strong, nonatomic, readonly) AVPlayer *player;
+
+@property (assign, nonatomic, getter = isReadyToPlay, readonly) BOOL readyToPlay;
+@property (assign, nonatomic, getter = isPlaying, readonly) BOOL playing;
+
 @property (assign, nonatomic, readonly) NSTimeInterval currentTime;
+@property (assign, nonatomic, readonly) NSTimeInterval duration;
 
 /*!
  @method        playerBoxWithURL:
@@ -28,6 +36,15 @@
 + (instancetype)playerBoxWithURL:(NSURL *)URL;
 
 /*!
+ @method        playerBoxWithAsset:
+ @abstract		Returns an instance of WBSAVPlayerBox that plays a single audiovisual resource referenced by an asset.
+ @param			asset
+ @result		An instance of WBSAVPlayerBox
+ @discussion	Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
+ */
++ (instancetype)playerBoxWithAsset:(AVAsset *)asset;
+
+/*!
  @method        initWithURL:
  @abstract		Returns an instance of WBSAVPlayerBox that plays a single audiovisual resource referenced by URL.
  @param			URL
@@ -36,13 +53,28 @@
  */
 - (instancetype)initWithURL:(NSURL *)URL;
 
+/*!
+ @method        initWithAsset:
+ @abstract		Returns an instance of WBSAVPlayerBox that plays a single audiovisual resource referenced by an asset.
+ @param			asset
+ @result		An instance of WBSAVPlayerBox
+ @discussion	Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
+ */
+- (instancetype)initWithAsset:(AVAsset *)asset;
+
+- (void)play;
+- (void)pause;
+- (void)stop;
+- (void)seekToTime:(NSTimeInterval)newSeekTime;
+
 @end
 
 
 
 @protocol WBSAVPlayerBoxDelegate <NSObject>
 @optional
-- (void)player:(AVPlayer *)player didChangeRate:(CGFloat)rate;
-- (void)player:(AVPlayer *)player didChangeCurrentItem:(AVPlayerItem *)playerItem;
+- (void)playerBox:(WBSAVPlayerBox *)playerBox readyToPlay:(BOOL)ready;
+- (void)playerBox:(WBSAVPlayerBox *)playerBox playing:(BOOL)playing;
+- (void)playerBox:(WBSAVPlayerBox *)playerBox didChangeCurrentItem:(AVPlayerItem *)playerItem;
 
 @end

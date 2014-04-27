@@ -138,8 +138,6 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     cell.seasonLabel.text = episode.season;
     [cell.posterImageView setImageWithURL:episode.posterURL];
     
-    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
-    
     [cell setNeedsLayout];
     [cell layoutIfNeeded];
     
@@ -155,14 +153,12 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     WBSFantorangenEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFantorangenEpisodesTableViewCellReuseIdentifier];
     cell.episode = episode;
 
-    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
-
     [cell setNeedsLayout];
     [cell layoutIfNeeded];
-
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     
-    return height;    
+    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+
+    return height;
 }
 
 

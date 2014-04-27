@@ -10,7 +10,7 @@
 
 #import "WBSAVPlayerView.h"
 
-#import <AVFoundation/AVFoundation.h>
+@import AVFoundation;
 
 static NSString *const kPlayerItemPresentationSizeKey = @"presentationSize";
 
@@ -32,7 +32,7 @@ static NSString *const kPlayerItemPresentationSizeKey = @"presentationSize";
 }
 
 - (AVPlayer *)player
-{
+{    
     return [(AVPlayerLayer *)[self layer] player];
 }
 

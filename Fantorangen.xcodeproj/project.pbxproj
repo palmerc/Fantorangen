@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		479167092EF5477F90508BAE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3BB67197C5456097DF74C7 /* libPods.a */; };
 		BB9DDEB58975410C9E19284D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3BB67197C5456097DF74C7 /* libPods.a */; };
+		C41DD25B38A84B2FBE925A4B /* libPods-Fantorangen Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B96DCA56BE144BEEAE3D0944 /* libPods-Fantorangen Tests.a */; };
+		C718A2A818E4107C00101037 /* WBSAVPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C718A2A718E4107C00101037 /* WBSAVPlayerItem.m */; };
+		C725B77D18BA6B9D00D9254E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20511872BD590039F44A /* XCTest.framework */; };
+		C725B77E18BA6B9D00D9254E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20321872BD590039F44A /* Foundation.framework */; };
+		C725B77F18BA6B9D00D9254E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20361872BD590039F44A /* UIKit.framework */; };
+		C725B78518BA6B9D00D9254E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C725B78318BA6B9D00D9254E /* InfoPlist.strings */; };
+		C725B78718BA6B9D00D9254E /* WBSAVPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C725B78618BA6B9D00D9254E /* WBSAVPlayerTests.m */; };
+		C745018E18BA6367003AF11D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C745018D18BA6367003AF11D /* AVFoundation.framework */; };
+		C74C663618E4369A00F6DD57 /* WBSAVPlayerBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C74C663518E4369A00F6DD57 /* WBSAVPlayerBox.m */; };
 		C779F52018763507002E75EF /* WBSAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F50E18763507002E75EF /* WBSAVPlayerView.m */; };
 		C779F52118763507002E75EF /* WBSAVPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51018763507002E75EF /* WBSAVPlayerViewController.m */; };
 		C779F52218763507002E75EF /* WBSFantorangenEpisodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51318763507002E75EF /* WBSFantorangenEpisodeManager.m */; };
@@ -17,28 +27,24 @@
 		C779F52718763507002E75EF /* WBSFantorangenEpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51F18763507002E75EF /* WBSFantorangenEpisodeViewController.m */; };
 		C779F52D1876355F002E75EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C779F5291876355F002E75EF /* Main.storyboard */; };
 		C779F52E1876355F002E75EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C779F52B1876355F002E75EF /* InfoPlist.strings */; };
+		C77ED26F18FD4EB700296C99 /* WBSAVURLAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C77ED26E18FD4EB700296C99 /* WBSAVURLAsset.m */; };
 		C7ADB0CF1885C3EF00BE2ED9 /* NSObject+Nametags.m in Sources */ = {isa = PBXBuildFile; fileRef = C7ADB0CE1885C3EF00BE2ED9 /* NSObject+Nametags.m */; };
 		C7ADB0D21885E86900BE2ED9 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C7ADB0D11885E86900BE2ED9 /* UIImage+Resize.m */; };
 		C7BE20331872BD590039F44A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20321872BD590039F44A /* Foundation.framework */; };
 		C7BE20351872BD590039F44A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20341872BD590039F44A /* CoreGraphics.framework */; };
 		C7BE20371872BD590039F44A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20361872BD590039F44A /* UIKit.framework */; };
 		C7BE20431872BD590039F44A /* WBSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE20421872BD590039F44A /* WBSAppDelegate.m */; };
-		C7BE204B1872BD590039F44A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BE204A1872BD590039F44A /* Images.xcassets */; };
-		C7BE20521872BD590039F44A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20511872BD590039F44A /* XCTest.framework */; };
-		C7BE20531872BD590039F44A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20321872BD590039F44A /* Foundation.framework */; };
-		C7BE20541872BD590039F44A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BE20361872BD590039F44A /* UIKit.framework */; };
-		C7BE205C1872BD590039F44A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7BE205A1872BD590039F44A /* InfoPlist.strings */; };
-		C7BE205E1872BD590039F44A /* FantorangenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE205D1872BD590039F44A /* FantorangenTests.m */; };
-		C7BE207418743BD70039F44A /* NSMutableArray+WBSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE207318743BD70039F44A /* NSMutableArray+WBSQueue.m */; };
 		C7C82C6A18849C96000FE61D /* WBSScrubberView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C82C6918849C96000FE61D /* WBSScrubberView.m */; };
+		C7C8798018BBDF300072438C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7C8797F18BBDF300072438C /* Images.xcassets */; };
+		C7C8798618BBDFEC0072438C /* NSArray+RandomOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C8798318BBDFEC0072438C /* NSArray+RandomOrder.m */; };
+		C7C8798718BBDFEC0072438C /* NSMutableArray+WBSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C8798518BBDFEC0072438C /* NSMutableArray+WBSQueue.m */; };
 		C7DBBC7618786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */; };
 		C7DBBC79187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */; };
 		C7DBBC7C187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC7B187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m */; };
-		C7F09C60187CAFDC00BCCF11 /* NSArray+RandomOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F09C5F187CAFDC00BCCF11 /* NSArray+RandomOrder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C7BE20551872BD590039F44A /* PBXContainerItemProxy */ = {
+		C725B78918BA6B9D00D9254E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C7BE20271872BD590039F44A /* Project object */;
 			proxyType = 1;
@@ -49,7 +55,20 @@
 
 /* Begin PBXFileReference section */
 		49FBD68575E64DC6B845FD75 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		556E647EFF634EC6AB20F278 /* Pods-Fantorangen Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fantorangen Tests.xcconfig"; path = "Pods/Pods-Fantorangen Tests.xcconfig"; sourceTree = "<group>"; };
 		8F3BB67197C5456097DF74C7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B96DCA56BE144BEEAE3D0944 /* libPods-Fantorangen Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fantorangen Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C718A2A618E4107C00101037 /* WBSAVPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVPlayerItem.h; sourceTree = "<group>"; };
+		C718A2A718E4107C00101037 /* WBSAVPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSAVPlayerItem.m; sourceTree = "<group>"; };
+		C725B77C18BA6B9D00D9254E /* Fantorangen Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fantorangen Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C725B78218BA6B9D00D9254E /* Fantorangen Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Fantorangen Tests-Info.plist"; sourceTree = "<group>"; };
+		C725B78418BA6B9D00D9254E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C725B78618BA6B9D00D9254E /* WBSAVPlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBSAVPlayerTests.m; sourceTree = "<group>"; };
+		C725B78818BA6B9D00D9254E /* Fantorangen Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fantorangen Tests-Prefix.pch"; sourceTree = "<group>"; };
+		C740BEA218BBD90E00A507D9 /* sample.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.m4v; sourceTree = "<group>"; };
+		C745018D18BA6367003AF11D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C74C663418E4369A00F6DD57 /* WBSAVPlayerBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVPlayerBox.h; sourceTree = "<group>"; };
+		C74C663518E4369A00F6DD57 /* WBSAVPlayerBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSAVPlayerBox.m; sourceTree = "<group>"; };
 		C779F50D18763507002E75EF /* WBSAVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVPlayerView.h; sourceTree = "<group>"; };
 		C779F50E18763507002E75EF /* WBSAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSAVPlayerView.m; sourceTree = "<group>"; };
 		C779F50F18763507002E75EF /* WBSAVPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVPlayerViewController.h; sourceTree = "<group>"; };
@@ -67,42 +86,53 @@
 		C779F51F18763507002E75EF /* WBSFantorangenEpisodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodeViewController.m; sourceTree = "<group>"; };
 		C779F52A1876355F002E75EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C779F52C1876355F002E75EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C7ADB0CD1885C3EF00BE2ED9 /* NSObject+Nametags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Nametags.h"; sourceTree = "<group>"; };
-		C7ADB0CE1885C3EF00BE2ED9 /* NSObject+Nametags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Nametags.m"; sourceTree = "<group>"; };
-		C7ADB0D01885E86900BE2ED9 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
-		C7ADB0D11885E86900BE2ED9 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		C77ED26D18FD4EB700296C99 /* WBSAVURLAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVURLAsset.h; sourceTree = "<group>"; };
+		C77ED26E18FD4EB700296C99 /* WBSAVURLAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSAVURLAsset.m; sourceTree = "<group>"; };
+		C7ADB0CD1885C3EF00BE2ED9 /* NSObject+Nametags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Nametags.h"; path = "../AVPlayer/NSObject+Nametags.h"; sourceTree = "<group>"; };
+		C7ADB0CE1885C3EF00BE2ED9 /* NSObject+Nametags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Nametags.m"; path = "../AVPlayer/NSObject+Nametags.m"; sourceTree = "<group>"; };
+		C7ADB0D01885E86900BE2ED9 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "../AVPlayer/UIImage+Resize.h"; sourceTree = "<group>"; };
+		C7ADB0D11885E86900BE2ED9 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "../AVPlayer/UIImage+Resize.m"; sourceTree = "<group>"; };
 		C7BE202F1872BD590039F44A /* Fantorangen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fantorangen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BE20321872BD590039F44A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C7BE20341872BD590039F44A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C7BE20361872BD590039F44A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C7BE20411872BD590039F44A /* WBSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBSAppDelegate.h; sourceTree = "<group>"; };
 		C7BE20421872BD590039F44A /* WBSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBSAppDelegate.m; sourceTree = "<group>"; };
-		C7BE204A1872BD590039F44A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C7BE20501872BD590039F44A /* FantorangenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FantorangenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BE20511872BD590039F44A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		C7BE20591872BD590039F44A /* FantorangenTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FantorangenTests-Info.plist"; sourceTree = "<group>"; };
-		C7BE205B1872BD590039F44A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C7BE205D1872BD590039F44A /* FantorangenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FantorangenTests.m; sourceTree = "<group>"; };
 		C7BE20671872BDF90039F44A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		C7BE207218743BD70039F44A /* NSMutableArray+WBSQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+WBSQueue.h"; sourceTree = "<group>"; };
-		C7BE207318743BD70039F44A /* NSMutableArray+WBSQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+WBSQueue.m"; sourceTree = "<group>"; };
 		C7C82C6818849C96000FE61D /* WBSScrubberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSScrubberView.h; sourceTree = "<group>"; };
 		C7C82C6918849C96000FE61D /* WBSScrubberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSScrubberView.m; sourceTree = "<group>"; };
+		C7C8797F18BBDF300072438C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C7C8798218BBDFEC0072438C /* NSArray+RandomOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+RandomOrder.h"; sourceTree = "<group>"; };
+		C7C8798318BBDFEC0072438C /* NSArray+RandomOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomOrder.m"; sourceTree = "<group>"; };
+		C7C8798418BBDFEC0072438C /* NSMutableArray+WBSQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+WBSQueue.h"; sourceTree = "<group>"; };
+		C7C8798518BBDFEC0072438C /* NSMutableArray+WBSQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+WBSQueue.m"; sourceTree = "<group>"; };
 		C7DBBC7418786FC500DC6C22 /* WBSFantorangenEpisodesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSFantorangenEpisodesViewController.h; sourceTree = "<group>"; };
 		C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodesViewController.m; sourceTree = "<group>"; };
 		C7DBBC77187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSFantorangenEpisodeTableViewCell.h; sourceTree = "<group>"; };
 		C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodeTableViewCell.m; sourceTree = "<group>"; };
 		C7DBBC7A187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSFantorangenEpisodesSectionTableViewCell.h; sourceTree = "<group>"; };
 		C7DBBC7B187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSFantorangenEpisodesSectionTableViewCell.m; sourceTree = "<group>"; };
-		C7F09C5E187CAFDC00BCCF11 /* NSArray+RandomOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+RandomOrder.h"; sourceTree = "<group>"; };
-		C7F09C5F187CAFDC00BCCF11 /* NSArray+RandomOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomOrder.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C725B77918BA6B9D00D9254E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C725B77D18BA6B9D00D9254E /* XCTest.framework in Frameworks */,
+				C725B77F18BA6B9D00D9254E /* UIKit.framework in Frameworks */,
+				C725B77E18BA6B9D00D9254E /* Foundation.framework in Frameworks */,
+				479167092EF5477F90508BAE /* libPods.a in Frameworks */,
+				C41DD25B38A84B2FBE925A4B /* libPods-Fantorangen Tests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7BE202C1872BD590039F44A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C745018E18BA6367003AF11D /* AVFoundation.framework in Frameworks */,
 				C7BE20351872BD590039F44A /* CoreGraphics.framework in Frameworks */,
 				C7BE20371872BD590039F44A /* UIKit.framework in Frameworks */,
 				C7BE20331872BD590039F44A /* Foundation.framework in Frameworks */,
@@ -110,19 +140,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7BE204D1872BD590039F44A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7BE20521872BD590039F44A /* XCTest.framework in Frameworks */,
-				C7BE20541872BD590039F44A /* UIKit.framework in Frameworks */,
-				C7BE20531872BD590039F44A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C725B78018BA6B9D00D9254E /* Fantorangen Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C725B78618BA6B9D00D9254E /* WBSAVPlayerTests.m */,
+				C725B78118BA6B9D00D9254E /* Supporting Files */,
+				C740BEA218BBD90E00A507D9 /* sample.m4v */,
+			);
+			path = "Fantorangen Tests";
+			sourceTree = "<group>";
+		};
+		C725B78118BA6B9D00D9254E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C725B78218BA6B9D00D9254E /* Fantorangen Tests-Info.plist */,
+				C725B78318BA6B9D00D9254E /* InfoPlist.strings */,
+				C725B78818BA6B9D00D9254E /* Fantorangen Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		C779F50C18763507002E75EF /* AVPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,10 +172,12 @@
 				C779F51018763507002E75EF /* WBSAVPlayerViewController.m */,
 				C7C82C6818849C96000FE61D /* WBSScrubberView.h */,
 				C7C82C6918849C96000FE61D /* WBSScrubberView.m */,
-				C7ADB0D01885E86900BE2ED9 /* UIImage+Resize.h */,
-				C7ADB0D11885E86900BE2ED9 /* UIImage+Resize.m */,
-				C7ADB0CD1885C3EF00BE2ED9 /* NSObject+Nametags.h */,
-				C7ADB0CE1885C3EF00BE2ED9 /* NSObject+Nametags.m */,
+				C74C663418E4369A00F6DD57 /* WBSAVPlayerBox.h */,
+				C74C663518E4369A00F6DD57 /* WBSAVPlayerBox.m */,
+				C718A2A618E4107C00101037 /* WBSAVPlayerItem.h */,
+				C718A2A718E4107C00101037 /* WBSAVPlayerItem.m */,
+				C77ED26D18FD4EB700296C99 /* WBSAVURLAsset.h */,
+				C77ED26E18FD4EB700296C99 /* WBSAVURLAsset.m */,
 			);
 			path = AVPlayer;
 			sourceTree = "<group>";
@@ -188,6 +230,7 @@
 		C779F5281876355F002E75EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C7C8797F18BBDF300072438C /* Images.xcassets */,
 				C779F5291876355F002E75EF /* Main.storyboard */,
 				C779F52B1876355F002E75EF /* InfoPlist.strings */,
 			);
@@ -198,10 +241,11 @@
 			isa = PBXGroup;
 			children = (
 				C7BE20381872BD590039F44A /* Fantorangen */,
-				C7BE20571872BD590039F44A /* FantorangenTests */,
+				C725B78018BA6B9D00D9254E /* Fantorangen Tests */,
 				C7BE20311872BD590039F44A /* Frameworks */,
 				C7BE20301872BD590039F44A /* Products */,
 				49FBD68575E64DC6B845FD75 /* Pods.xcconfig */,
+				556E647EFF634EC6AB20F278 /* Pods-Fantorangen Tests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,7 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BE202F1872BD590039F44A /* Fantorangen.app */,
-				C7BE20501872BD590039F44A /* FantorangenTests.xctest */,
+				C725B77C18BA6B9D00D9254E /* Fantorangen Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,12 +261,14 @@
 		C7BE20311872BD590039F44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C745018D18BA6367003AF11D /* AVFoundation.framework */,
 				C7BE20671872BDF90039F44A /* MediaPlayer.framework */,
 				C7BE20321872BD590039F44A /* Foundation.framework */,
 				C7BE20341872BD590039F44A /* CoreGraphics.framework */,
 				C7BE20361872BD590039F44A /* UIKit.framework */,
 				C7BE20511872BD590039F44A /* XCTest.framework */,
 				8F3BB67197C5456097DF74C7 /* libPods.a */,
+				B96DCA56BE144BEEAE3D0944 /* libPods-Fantorangen Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -230,6 +276,7 @@
 		C7BE20381872BD590039F44A /* Fantorangen */ = {
 			isa = PBXGroup;
 			children = (
+				C7C8798118BBDFEC0072438C /* Categories */,
 				C779F5281876355F002E75EF /* Resources */,
 				C779F50C18763507002E75EF /* AVPlayer */,
 				C779F51118763507002E75EF /* Episode Manager */,
@@ -238,36 +285,48 @@
 				C779F51D18763507002E75EF /* View Controllers */,
 				C7BE20411872BD590039F44A /* WBSAppDelegate.h */,
 				C7BE20421872BD590039F44A /* WBSAppDelegate.m */,
-				C7BE204A1872BD590039F44A /* Images.xcassets */,
-				C7BE207218743BD70039F44A /* NSMutableArray+WBSQueue.h */,
-				C7BE207318743BD70039F44A /* NSMutableArray+WBSQueue.m */,
-				C7F09C5E187CAFDC00BCCF11 /* NSArray+RandomOrder.h */,
-				C7F09C5F187CAFDC00BCCF11 /* NSArray+RandomOrder.m */,
 			);
 			path = Fantorangen;
 			sourceTree = "<group>";
 		};
-		C7BE20571872BD590039F44A /* FantorangenTests */ = {
+		C7C8798118BBDFEC0072438C /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				C7BE205D1872BD590039F44A /* FantorangenTests.m */,
-				C7BE20581872BD590039F44A /* Supporting Files */,
+				C7ADB0D01885E86900BE2ED9 /* UIImage+Resize.h */,
+				C7ADB0D11885E86900BE2ED9 /* UIImage+Resize.m */,
+				C7ADB0CD1885C3EF00BE2ED9 /* NSObject+Nametags.h */,
+				C7ADB0CE1885C3EF00BE2ED9 /* NSObject+Nametags.m */,
+				C7C8798218BBDFEC0072438C /* NSArray+RandomOrder.h */,
+				C7C8798318BBDFEC0072438C /* NSArray+RandomOrder.m */,
+				C7C8798418BBDFEC0072438C /* NSMutableArray+WBSQueue.h */,
+				C7C8798518BBDFEC0072438C /* NSMutableArray+WBSQueue.m */,
 			);
-			path = FantorangenTests;
-			sourceTree = "<group>";
-		};
-		C7BE20581872BD590039F44A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C7BE20591872BD590039F44A /* FantorangenTests-Info.plist */,
-				C7BE205A1872BD590039F44A /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C725B77B18BA6B9D00D9254E /* Fantorangen Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C725B78D18BA6B9D00D9254E /* Build configuration list for PBXNativeTarget "Fantorangen Tests" */;
+			buildPhases = (
+				EA3B0137052F40CD8CEFD3D2 /* Check Pods Manifest.lock */,
+				C725B77818BA6B9D00D9254E /* Sources */,
+				C725B77918BA6B9D00D9254E /* Frameworks */,
+				C725B77A18BA6B9D00D9254E /* Resources */,
+				0431604EDD164DB79E4BBCFB /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C725B78A18BA6B9D00D9254E /* PBXTargetDependency */,
+			);
+			name = "Fantorangen Tests";
+			productName = "Fantorangen Tests";
+			productReference = C725B77C18BA6B9D00D9254E /* Fantorangen Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C7BE202E1872BD590039F44A /* Fantorangen */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7BE20611872BD590039F44A /* Build configuration list for PBXNativeTarget "Fantorangen" */;
@@ -287,24 +346,6 @@
 			productReference = C7BE202F1872BD590039F44A /* Fantorangen.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C7BE204F1872BD590039F44A /* FantorangenTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C7BE20641872BD590039F44A /* Build configuration list for PBXNativeTarget "FantorangenTests" */;
-			buildPhases = (
-				C7BE204C1872BD590039F44A /* Sources */,
-				C7BE204D1872BD590039F44A /* Frameworks */,
-				C7BE204E1872BD590039F44A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C7BE20561872BD590039F44A /* PBXTargetDependency */,
-			);
-			name = FantorangenTests;
-			productName = FantorangenTests;
-			productReference = C7BE20501872BD590039F44A /* FantorangenTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -312,18 +353,18 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = WBS;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Wolf and Bear Studios";
 				TargetAttributes = {
+					C725B77B18BA6B9D00D9254E = {
+						TestTargetID = C7BE202E1872BD590039F44A;
+					};
 					C7BE202E1872BD590039F44A = {
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 						};
-					};
-					C7BE204F1872BD590039F44A = {
-						TestTargetID = C7BE202E1872BD590039F44A;
 					};
 				};
 			};
@@ -341,33 +382,63 @@
 			projectRoot = "";
 			targets = (
 				C7BE202E1872BD590039F44A /* Fantorangen */,
-				C7BE204F1872BD590039F44A /* FantorangenTests */,
+				C725B77B18BA6B9D00D9254E /* Fantorangen Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C725B77A18BA6B9D00D9254E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C725B78518BA6B9D00D9254E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7BE202D1872BD590039F44A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7C8798018BBDF300072438C /* Images.xcassets in Resources */,
 				C779F52D1876355F002E75EF /* Main.storyboard in Resources */,
 				C779F52E1876355F002E75EF /* InfoPlist.strings in Resources */,
-				C7BE204B1872BD590039F44A /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7BE204E1872BD590039F44A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7BE205C1872BD590039F44A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0431604EDD164DB79E4BBCFB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Fantorangen Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA3B0137052F40CD8CEFD3D2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		F1F5CAD742AC4DEFAD0B3E15 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,48 +472,59 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C725B77818BA6B9D00D9254E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C725B78718BA6B9D00D9254E /* WBSAVPlayerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C7BE202B1872BD590039F44A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C779F52318763507002E75EF /* WBSFantorangenWebViewOperation.m in Sources */,
 				C779F52418763507002E75EF /* WBSEpisode.m in Sources */,
-				C7BE207418743BD70039F44A /* NSMutableArray+WBSQueue.m in Sources */,
 				C7C82C6A18849C96000FE61D /* WBSScrubberView.m in Sources */,
 				C779F52118763507002E75EF /* WBSAVPlayerViewController.m in Sources */,
 				C7ADB0CF1885C3EF00BE2ED9 /* NSObject+Nametags.m in Sources */,
 				C779F52218763507002E75EF /* WBSFantorangenEpisodeManager.m in Sources */,
+				C7C8798718BBDFEC0072438C /* NSMutableArray+WBSQueue.m in Sources */,
 				C7DBBC7618786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m in Sources */,
+				C77ED26F18FD4EB700296C99 /* WBSAVURLAsset.m in Sources */,
 				C7BE20431872BD590039F44A /* WBSAppDelegate.m in Sources */,
+				C7C8798618BBDFEC0072438C /* NSArray+RandomOrder.m in Sources */,
 				C7ADB0D21885E86900BE2ED9 /* UIImage+Resize.m in Sources */,
+				C718A2A818E4107C00101037 /* WBSAVPlayerItem.m in Sources */,
 				C779F52618763507002E75EF /* main.m in Sources */,
 				C7DBBC79187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m in Sources */,
 				C779F52018763507002E75EF /* WBSAVPlayerView.m in Sources */,
 				C7DBBC7C187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m in Sources */,
-				C7F09C60187CAFDC00BCCF11 /* NSArray+RandomOrder.m in Sources */,
 				C779F52718763507002E75EF /* WBSFantorangenEpisodeViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7BE204C1872BD590039F44A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7BE205E1872BD590039F44A /* FantorangenTests.m in Sources */,
+				C74C663618E4369A00F6DD57 /* WBSAVPlayerBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C7BE20561872BD590039F44A /* PBXTargetDependency */ = {
+		C725B78A18BA6B9D00D9254E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C7BE202E1872BD590039F44A /* Fantorangen */;
-			targetProxy = C7BE20551872BD590039F44A /* PBXContainerItemProxy */;
+			targetProxy = C725B78918BA6B9D00D9254E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C725B78318BA6B9D00D9254E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C725B78418BA6B9D00D9254E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		C779F5291876355F002E75EF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -459,24 +541,61 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		C7BE205A1872BD590039F44A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C7BE205B1872BD590039F44A /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C725B78B18BA6B9D00D9254E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 556E647EFF634EC6AB20F278 /* Pods-Fantorangen Tests.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fantorangen.app/Fantorangen";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Fantorangen Tests/Fantorangen Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Fantorangen Tests/Fantorangen Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C725B78C18BA6B9D00D9254E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 556E647EFF634EC6AB20F278 /* Pods-Fantorangen Tests.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fantorangen.app/Fantorangen";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Fantorangen Tests/Fantorangen Tests-Prefix.pch";
+				INFOPLIST_FILE = "Fantorangen Tests/Fantorangen Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		C7BE205F1872BD590039F44A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -487,9 +606,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -513,9 +631,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -526,10 +641,9 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -570,51 +684,18 @@
 			};
 			name = Release;
 		};
-		C7BE20651872BD590039F44A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fantorangen.app/Fantorangen";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Fantorangen/Fantorangen-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "FantorangenTests/FantorangenTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		C7BE20661872BD590039F44A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fantorangen.app/Fantorangen";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Fantorangen/Fantorangen-Prefix.pch";
-				INFOPLIST_FILE = "FantorangenTests/FantorangenTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C725B78D18BA6B9D00D9254E /* Build configuration list for PBXNativeTarget "Fantorangen Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C725B78B18BA6B9D00D9254E /* Debug */,
+				C725B78C18BA6B9D00D9254E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C7BE202A1872BD590039F44A /* Build configuration list for PBXProject "Fantorangen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -629,15 +710,6 @@
 			buildConfigurations = (
 				C7BE20621872BD590039F44A /* Debug */,
 				C7BE20631872BD590039F44A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C7BE20641872BD590039F44A /* Build configuration list for PBXNativeTarget "FantorangenTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C7BE20651872BD590039F44A /* Debug */,
-				C7BE20661872BD590039F44A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

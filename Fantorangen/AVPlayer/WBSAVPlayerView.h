@@ -14,8 +14,6 @@
 
 @interface WBSAVPlayerView : UIView
 
-@property (nonatomic, retain) AVPlayer *player;
-
 - (void)setVideoFillMode:(NSString *)fillMode;
 
 @end

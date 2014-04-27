@@ -8,7 +8,8 @@
 
 #import "WBSAppDelegate.h"
 
-#import <AVFoundation/AVFoundation.h>
+@import AVFoundation;
+
 #import <TestFlightSDK/TestFlight.h>
 #import <NewRelicAgent/NewRelic.h>
 
