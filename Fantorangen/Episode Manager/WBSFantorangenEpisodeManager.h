@@ -16,11 +16,8 @@
 
 @interface WBSFantorangenEpisodeManager : NSObject
 @property (weak, nonatomic) id <WBSFantorangenEpisodeManagerDelegate> delegate;
-@property (strong, nonatomic, readonly) NSArray *episodes;
-@property (strong, nonatomic, readonly) NSDictionary *episodeURLToEpisode;
 
-- (void)beginEpisodeUpdates;
-- (WBSEpisode *)episodeForURL:(NSURL *)episodeURL;
+@property (strong, nonatomic, readonly) NSArray *episodes;
 
 @end
 
@@ -28,7 +25,7 @@
 
 @protocol WBSFantorangenEpisodeManagerDelegate <NSObject>
 @optional
-- (void)episodeRefresh:(NSURL *)episodeURL;
+- (void)episodeRefresh:(WBSEpisode *)episode;
 
 @end
 

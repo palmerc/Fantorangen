@@ -25,8 +25,8 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 @property (strong, nonatomic) WBSFantorangenEpisodeManager *episodeManager;
 
 @property (assign, nonatomic, getter = isFirstRun) BOOL firstRun;
-@property (strong, nonatomic) NSMutableDictionary *mutableEpisodeURLToEpisode;
 
+@property (strong, nonatomic) NSSet *uniqueEpisodes;
 @property (strong, nonatomic, readonly) NSArray *seasons;
 @property (strong, nonatomic, readonly) NSArray *episodes;
 
@@ -46,7 +46,6 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     
     WBSFantorangenEpisodeManager *episodeManager = [[WBSFantorangenEpisodeManager alloc] init];
     episodeManager.delegate = self;
-    [episodeManager beginEpisodeUpdates];
     self.episodeManager = episodeManager;
 }
 
@@ -89,7 +88,10 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     
     cell.titleLabel.text = episode.seriesTitle;
     cell.seasonLabel.text = episode.season;
-    [cell.posterImageView setImageWithURL:episode.posterURL];
+    if (episode.posterURL != nil) {
+        [cell.posterImageView setImageWithURL:episode.posterURL];
+    }
+
     return cell;
 }
 
@@ -165,12 +167,21 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 #pragma mark - WBSFantorangenEpisodeManagerDelegate
 
-- (void)episodeRefresh:(NSURL *)episodeURL
+- (void)episodeRefresh:(WBSEpisode *)episode
 {
-    WBSEpisode *episode = [self.episodeManager episodeForURL:episodeURL];
-    [self.mutableEpisodeURLToEpisode setObject:episode forKey:episodeURL];
+    static NSTimer *timer = nil;
+    if (timer == nil || [timer isValid]) {
+        [timer invalidate];
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(refreshTableView) userInfo:nil repeats:NO];
+    }
+}
+
+- (void)refreshTableView
+{
     [self.tableView reloadData];
 }
+
+
 
 
 
@@ -186,15 +197,6 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 
 #pragma mark - Getters
-
-- (NSMutableDictionary *)mutableEpisodeURLToEpisode
-{
-    if (_mutableEpisodeURLToEpisode == nil) {
-        self.mutableEpisodeURLToEpisode = [[NSMutableDictionary alloc] init];
-    }
-    
-    return _mutableEpisodeURLToEpisode;
-}
 
 - (NSArray *)seasons
 {
@@ -214,7 +216,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 - (NSArray *)episodes
 {
-    NSArray *episodes = [[self.mutableEpisodeURLToEpisode allValues] sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(id obj1, id obj2) {
+    NSArray *episodes = [[self.episodeManager episodes] sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(id obj1, id obj2) {
         WBSEpisode *episode1 = obj1;
         WBSEpisode *episode2 = obj2;
         return [episode1.episodeTitle compare:episode2.episodeTitle options:NSCaseInsensitiveSearch|NSNumericSearch];

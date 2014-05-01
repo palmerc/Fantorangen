@@ -21,8 +21,10 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
 
 
 @interface WBSFantorangenEpisodeManager () <WBSWebViewOperationDelegate>
-@property (strong, nonatomic) NSURL *NRKTVURL;
-@property (strong, nonatomic) NSMutableDictionary *mutableEpisodeURLToEpisode;
+@property (strong, nonatomic, readonly) NSURL *NRKTVURL;
+
+@property (strong, nonatomic) NSSet *uniqueEpisodes;
+
 @property (strong, nonatomic) AFHTTPRequestOperationManager *requestOperationManager;
 
 @end
@@ -49,6 +51,14 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
     }
     
     return self;
+}
+
+- (void)setDelegate:(id<WBSFantorangenEpisodeManagerDelegate>)delegate
+{
+    _delegate = delegate;
+
+    [self unarchiveEpisodeData];
+    [self beginEpisodeUpdates];
 }
 
 - (void)beginEpisodeUpdates
@@ -135,10 +145,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     episode.transmissionInformation = transmissionInformation;
                     episode.availability = availability;
                     
-                    NSURL *episodeURL = episode.episodeURL;
-                    if (episodeURL != nil) {
-                        [self.mutableEpisodeURLToEpisode setObject:episode forKey:episode.episodeURL];
-                    }
+                    [self addEpisode:episode];
                 }
                 
                 [self fetchVideoURLs];
@@ -157,6 +164,8 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
         webViewOperation.delegate = self;
         [operationQueue addOperation:webViewOperation];
     }
+
+    [self archiveEpisodeData];
 }
 
 
@@ -165,41 +174,113 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
 
 - (void)webViewOperationDidFinish:(WBSFantorangenWebViewOperation *)webViewOperation
 {
-    WBSEpisode *episode = [self.episodeURLToEpisode objectForKey:webViewOperation.episodeURL];
+    WBSEpisode *episode = [self episodeForURL:webViewOperation.episodeURL];
     episode.videoURL = webViewOperation.videoURL;
     episode.posterURL = webViewOperation.posterURL;
 
     if ([self.delegate respondsToSelector:@selector(episodeRefresh:)]) {
-        [self.delegate episodeRefresh:webViewOperation.episodeURL];
+        [self.delegate episodeRefresh:episode];
     }
+}
+
+
+#pragma mark - 
+
+- (void)archiveEpisodeData
+{
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
+    NSData *serializedEpisodeData = [NSKeyedArchiver archivedDataWithRootObject:self.episodes];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *episodesArchiveURL = [self episodesArchiveURL];
+
+        NSError *error = nil;
+        [serializedEpisodeData writeToFile:[episodesArchiveURL path] options:NSDataWritingFileProtectionNone error:&error];
+        if (error != nil) {
+            DDLogError(@"%@", error);
+        }
+    });
+}
+
+- (void)unarchiveEpisodeData
+{
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *episodeData = [NSData dataWithContentsOfURL:[self episodesArchiveURL]];
+        if (episodeData != nil) {
+            NSArray *episodes = [NSKeyedUnarchiver unarchiveObjectWithData:episodeData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self addEpisodes:episodes];
+            });
+        }
+    });
 }
 
 
 
 #pragma mark - Getters
 
+- (void)addEpisode:(WBSEpisode *)episode
+{
+    if (episode.episodeURL != nil) {
+        self.uniqueEpisodes = [self.uniqueEpisodes setByAddingObject:episode];
+
+        if ([self.delegate respondsToSelector:@selector(episodeRefresh:)]) {
+            [self.delegate episodeRefresh:episode];
+        }
+    }
+}
+
+- (void)addEpisodes:(NSArray *)episodes
+{
+    for (WBSEpisode *episode in episodes) {
+        [self addEpisode:episode];
+    }
+}
+
+- (NSSet *)uniqueEpisodes
+{
+    if (_uniqueEpisodes == nil) {
+        _uniqueEpisodes = [NSSet set];
+    }
+
+    return _uniqueEpisodes;
+}
+
 - (NSArray *)episodes
 {
-    return [self.episodeURLToEpisode allValues];
-}
-
-- (NSMutableDictionary *)mutableEpisodeURLToEpisode
-{
-    if (_mutableEpisodeURLToEpisode == nil) {
-        self.mutableEpisodeURLToEpisode = [[NSMutableDictionary alloc] init];
-    }
-    
-    return _mutableEpisodeURLToEpisode;
-}
-
-- (NSDictionary *)episodeURLToEpisode
-{
-    return [self.mutableEpisodeURLToEpisode copy];
+    return [self.uniqueEpisodes allObjects];
 }
 
 - (WBSEpisode *)episodeForURL:(NSURL *)episodeURL
 {
-    return [self.mutableEpisodeURLToEpisode objectForKey:episodeURL];
+    WBSEpisode *matchingEpisode = nil;
+    for (WBSEpisode *episode in self.episodes) {
+        if ([episode.episodeURL isEqual:episodeURL]) {
+            matchingEpisode = episode;
+        }
+    }
+
+    return matchingEpisode;
+}
+
+- (NSURL *)episodesArchiveURL
+{
+    NSArray *directories = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *libraryPath = [directories firstObject];
+    NSURL *libraryURL = [NSURL fileURLWithPath:libraryPath];
+    NSURL *episodesFolderURL = [libraryURL URLByAppendingPathComponent:@"episodes" isDirectory:YES];
+
+    NSError *error = nil;
+    [[NSFileManager defaultManager] createDirectoryAtURL:episodesFolderURL withIntermediateDirectories:YES attributes:nil error:&error];
+    if (error != nil) {
+        DDLogError(@"%@", error);
+    }
+
+    NSURL *episodesArchiveURL =[episodesFolderURL URLByAppendingPathComponent:@"episodes.archive" isDirectory:NO];
+
+    return episodesArchiveURL;
 }
 
 @end

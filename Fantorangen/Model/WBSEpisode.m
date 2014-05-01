@@ -47,4 +47,30 @@
     [aCoder encodeInteger:self.availability forKey:NSStringFromSelector(@selector(availability))];
 }
 
+- (NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    BOOL isEqual = NO;
+    if (object && [object isKindOfClass:[WBSEpisode class]]) {
+        WBSEpisode *episode = object;
+        isEqual = [self isEqualToEpisode:episode];
+    }
+
+    return isEqual;
+}
+
+- (BOOL)isEqualToEpisode:(WBSEpisode *)episode
+{
+    BOOL isEqual = NO;
+    if (episode) {
+        isEqual = [self.identifier isEqualToString:episode.identifier];
+    }
+
+    return isEqual;
+}
+
 @end
