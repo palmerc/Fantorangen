@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, WBSEpisodeAvailability) {
     kWBSEpisodeAvailabilityAvailable,
     kWBSEpisodeAvailabilityUnavailable
-} WBSEpisodeAvailability;
+};
 
 
 
-@interface WBSEpisode : NSObject
+@interface WBSEpisode : NSObject <NSCoding>
 
 @property (copy, nonatomic) NSString *identifier;
 @property (copy, nonatomic) NSString *season;
