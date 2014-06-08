@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class WBSSeason;
+
 typedef NS_ENUM(NSInteger, WBSEpisodeAvailability) {
     kWBSEpisodeAvailabilityAvailable,
     kWBSEpisodeAvailabilityUnavailable
@@ -18,7 +20,7 @@ typedef NS_ENUM(NSInteger, WBSEpisodeAvailability) {
 @interface WBSEpisode : NSObject <NSCoding>
 
 @property (copy, nonatomic) NSString *identifier;
-@property (copy, nonatomic) NSString *season;
+@property (strong, nonatomic) WBSSeason *season;
 @property (copy, nonatomic) NSString *episodeNumber;
 @property (copy, nonatomic) NSString *seriesTitle;
 @property (copy, nonatomic) NSString *episodeTitle;
@@ -28,5 +30,7 @@ typedef NS_ENUM(NSInteger, WBSEpisodeAvailability) {
 @property (copy, nonatomic) NSURL *posterURL;
 @property (copy, nonatomic) NSString *transmissionInformation;
 @property (assign, nonatomic) WBSEpisodeAvailability availability;
+
+- (void)updateWithEpisode:(WBSEpisode *)episode;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "WBSEpisode.h"
 
+#import "WBSSeason.h"
+
 
 
 @implementation WBSEpisode
@@ -46,6 +48,30 @@
     [aCoder encodeObject:self.transmissionInformation forKey:NSStringFromSelector(@selector(transmissionInformation))];
     [aCoder encodeInteger:self.availability forKey:NSStringFromSelector(@selector(availability))];
 }
+
+
+
+- (void)updateWithEpisode:(WBSEpisode *)episode
+{
+    NSURL *episodeURL = episode.episodeURL;
+    if (episodeURL != nil) {
+        self.episodeURL = episodeURL;
+    }
+
+    NSURL *posterURL = episode.posterURL;
+    if (posterURL != nil) {
+        self.posterURL = posterURL;
+    }
+
+    NSURL *videoURL = episode.videoURL;
+    if (videoURL != nil) {
+        self.videoURL = videoURL;
+    }
+}
+
+
+
+#pragma mark - Equality
 
 - (NSUInteger)hash
 {

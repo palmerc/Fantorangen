@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		BB9DDEB58975410C9E19284D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3BB67197C5456097DF74C7 /* libPods.a */; };
+		C718B9781943A06100996736 /* WBSFantorangenEpisodeTableViewCell+WBSEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = C718B9771943A06100996736 /* WBSFantorangenEpisodeTableViewCell+WBSEpisode.m */; };
+		C718B9791943A1EF00996736 /* WBSFantorangenEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */; };
+		C718B97C1944412300996736 /* WBSProgramStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = C718B97B1944412300996736 /* WBSProgramStorage.m */; };
+		C718B97F19444E2000996736 /* WBSSeason.m in Sources */ = {isa = PBXBuildFile; fileRef = C718B97E19444E2000996736 /* WBSSeason.m */; };
 		C779F52018763507002E75EF /* WBSAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F50E18763507002E75EF /* WBSAVPlayerView.m */; };
 		C779F52118763507002E75EF /* WBSAVPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51018763507002E75EF /* WBSAVPlayerViewController.m */; };
 		C779F52218763507002E75EF /* WBSFantorangenEpisodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51318763507002E75EF /* WBSFantorangenEpisodeManager.m */; };
@@ -32,7 +36,6 @@
 		C7BE207418743BD70039F44A /* NSMutableArray+WBSQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BE207318743BD70039F44A /* NSMutableArray+WBSQueue.m */; };
 		C7C82C6A18849C96000FE61D /* WBSScrubberView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C82C6918849C96000FE61D /* WBSScrubberView.m */; };
 		C7DBBC7618786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */; };
-		C7DBBC79187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */; };
 		C7DBBC7C187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC7B187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m */; };
 		C7F09C60187CAFDC00BCCF11 /* NSArray+RandomOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F09C5F187CAFDC00BCCF11 /* NSArray+RandomOrder.m */; };
 /* End PBXBuildFile section */
@@ -50,6 +53,12 @@
 /* Begin PBXFileReference section */
 		49FBD68575E64DC6B845FD75 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8F3BB67197C5456097DF74C7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C718B9761943A06100996736 /* WBSFantorangenEpisodeTableViewCell+WBSEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBSFantorangenEpisodeTableViewCell+WBSEpisode.h"; sourceTree = "<group>"; };
+		C718B9771943A06100996736 /* WBSFantorangenEpisodeTableViewCell+WBSEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WBSFantorangenEpisodeTableViewCell+WBSEpisode.m"; sourceTree = "<group>"; };
+		C718B97A1944412200996736 /* WBSProgramStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSProgramStorage.h; sourceTree = "<group>"; };
+		C718B97B1944412300996736 /* WBSProgramStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSProgramStorage.m; sourceTree = "<group>"; };
+		C718B97D19444E2000996736 /* WBSSeason.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSSeason.h; sourceTree = "<group>"; };
+		C718B97E19444E2000996736 /* WBSSeason.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSSeason.m; sourceTree = "<group>"; };
 		C779F50D18763507002E75EF /* WBSAVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVPlayerView.h; sourceTree = "<group>"; };
 		C779F50E18763507002E75EF /* WBSAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSAVPlayerView.m; sourceTree = "<group>"; };
 		C779F50F18763507002E75EF /* WBSAVPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVPlayerViewController.h; sourceTree = "<group>"; };
@@ -147,6 +156,8 @@
 				C779F51318763507002E75EF /* WBSFantorangenEpisodeManager.m */,
 				C779F51418763507002E75EF /* WBSFantorangenWebViewOperation.h */,
 				C779F51518763507002E75EF /* WBSFantorangenWebViewOperation.m */,
+				C718B97A1944412200996736 /* WBSProgramStorage.h */,
+				C718B97B1944412300996736 /* WBSProgramStorage.m */,
 			);
 			path = "Episode Manager";
 			sourceTree = "<group>";
@@ -156,6 +167,8 @@
 			children = (
 				C779F51718763507002E75EF /* WBSEpisode.h */,
 				C779F51818763507002E75EF /* WBSEpisode.m */,
+				C718B97D19444E2000996736 /* WBSSeason.h */,
+				C718B97E19444E2000996736 /* WBSSeason.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +194,8 @@
 				C7DBBC7B187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m */,
 				C7DBBC77187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.h */,
 				C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */,
+				C718B9761943A06100996736 /* WBSFantorangenEpisodeTableViewCell+WBSEpisode.h */,
+				C718B9771943A06100996736 /* WBSFantorangenEpisodeTableViewCell+WBSEpisode.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -407,20 +422,23 @@
 			files = (
 				C779F52318763507002E75EF /* WBSFantorangenWebViewOperation.m in Sources */,
 				C779F52418763507002E75EF /* WBSEpisode.m in Sources */,
+				C718B97C1944412300996736 /* WBSProgramStorage.m in Sources */,
 				C7BE207418743BD70039F44A /* NSMutableArray+WBSQueue.m in Sources */,
 				C7C82C6A18849C96000FE61D /* WBSScrubberView.m in Sources */,
 				C779F52118763507002E75EF /* WBSAVPlayerViewController.m in Sources */,
+				C718B9781943A06100996736 /* WBSFantorangenEpisodeTableViewCell+WBSEpisode.m in Sources */,
+				C718B97F19444E2000996736 /* WBSSeason.m in Sources */,
 				C7ADB0CF1885C3EF00BE2ED9 /* NSObject+Nametags.m in Sources */,
 				C779F52218763507002E75EF /* WBSFantorangenEpisodeManager.m in Sources */,
 				C7DBBC7618786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m in Sources */,
 				C7BE20431872BD590039F44A /* WBSAppDelegate.m in Sources */,
 				C7ADB0D21885E86900BE2ED9 /* UIImage+Resize.m in Sources */,
 				C779F52618763507002E75EF /* main.m in Sources */,
-				C7DBBC79187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m in Sources */,
 				C779F52018763507002E75EF /* WBSAVPlayerView.m in Sources */,
 				C7DBBC7C187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m in Sources */,
 				C7F09C60187CAFDC00BCCF11 /* NSArray+RandomOrder.m in Sources */,
 				C779F52718763507002E75EF /* WBSFantorangenEpisodeViewController.m in Sources */,
+				C718B9791943A1EF00996736 /* WBSFantorangenEpisodeTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

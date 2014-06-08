@@ -10,9 +10,11 @@
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "WBSFantorangenEpisodeManager.h"
+#import "WBSProgramStorage.h"
+#import "WBSSeason.h"
 #import "WBSEpisode.h"
 #import "WBSFantorangenEpisodesSectionTableViewCell.h"
-#import "WBSFantorangenEpisodeTableViewCell.h"
+#import "WBSFantorangenEpisodeTableViewCell+WBSEpisode.h"
 #import "WBSFantorangenEpisodeViewController.h"
 #import "NSArray+RandomOrder.h"
 
@@ -23,12 +25,12 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 @interface WBSFantorangenEpisodesViewController () <WBSFantorangenEpisodeManagerDelegate>
 
 @property (strong, nonatomic) WBSFantorangenEpisodeManager *episodeManager;
+@property (strong, nonatomic) WBSProgramStorage *programStorage;
 
 @property (assign, nonatomic, getter = isFirstRun) BOOL firstRun;
-@property (strong, nonatomic) NSMutableDictionary *mutableEpisodeURLToEpisode;
 
-@property (strong, nonatomic, readonly) NSArray *seasons;
-@property (strong, nonatomic, readonly) NSArray *episodes;
+@property (strong, nonatomic) NSDictionary *seasonsToEpisodes;
+@property (strong, nonatomic) NSTimer *tableReloadTimer;
 
 @end
 
@@ -38,10 +40,10 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
-    
+
     self.title = NSLocalizedString(@"Episodes", @"Episodes");
     
     WBSFantorangenEpisodeManager *episodeManager = [[WBSFantorangenEpisodeManager alloc] init];
@@ -73,34 +75,56 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.seasons count];
+    NSUInteger sectionCount = [self.programStorage.seasons count];
+
+    return sectionCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.episodes count];
+    WBSSeason *season = [self.programStorage.seasons objectAtIndex:section];
+    NSUInteger rowCount = [[self.programStorage episodesForSeason:season] count];
+
+    return rowCount;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     WBSFantorangenEpisodesSectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kWBSFantorangenEpisodesSectionTableViewCellReuseIdentifier];
     
-    WBSEpisode *episode = [self.episodes firstObject];
+    WBSEpisode *episode = nil;//[self.episodes firstObject];
     
     cell.titleLabel.text = episode.seriesTitle;
-    cell.seasonLabel.text = episode.season;
-    [cell.posterImageView setImageWithURL:episode.posterURL];
+    cell.seasonLabel.text = episode.season.seasonDescription;
+
     return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WBSEpisode *episode = [self.episodes objectAtIndex:indexPath.row];
+    WBSEpisode *episode = [self episodeForIndexPath:indexPath];
     
     WBSFantorangenEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFantorangenEpisodesTableViewCellReuseIdentifier];
-    cell.episode = episode;
+    [cell setEpisode:episode visibility:YES];
         
     return cell;
+}
+
+- (void)reloadCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    WBSFantorangenEpisodeTableViewCell *episodeTableViewCell = (WBSFantorangenEpisodeTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    if (episodeTableViewCell == nil) {
+        if (self.tableReloadTimer == nil || [self.tableReloadTimer isValid]) {
+            [self.tableReloadTimer invalidate];
+            self.tableReloadTimer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(forceTableViewReload) userInfo:nil repeats:NO];
+        }
+    }
+}
+
+- (void)forceTableViewReload
+{
+    self.tableReloadTimer = nil;
+    [self.tableView reloadData];
 }
 
 
@@ -111,7 +135,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 {
     BOOL shouldHighlightRow = NO;
 
-    WBSEpisode *episode = [self.episodes objectAtIndex:indexPath.row];
+    WBSEpisode *episode = nil;//[self.episodes objectAtIndex:indexPath.row];
     if (episode.availability == kWBSEpisodeAvailabilityAvailable) {
         shouldHighlightRow = YES;
     }
@@ -123,7 +147,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    WBSEpisode *episode = [self.episodes objectAtIndex:indexPath.row];
+    WBSEpisode *episode = nil;//[self.episodes objectAtIndex:indexPath.row];
     if (episode.availability == kWBSEpisodeAvailabilityAvailable) {
         [self performSegueWithIdentifier:kFantorangenEpisodeViewControllerSegue sender:episode];
     }
@@ -131,13 +155,12 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    WBSEpisode *episode = [self.episodes firstObject];
+    WBSEpisode *episode = nil;// [self.episodes firstObject];
     
     WBSFantorangenEpisodesSectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kWBSFantorangenEpisodesSectionTableViewCellReuseIdentifier];
     cell.titleLabel.text = episode.seriesTitle;
-    cell.seasonLabel.text = episode.season;
-    [cell.posterImageView setImageWithURL:episode.posterURL];
-    
+    cell.seasonLabel.text = episode.season.seasonDescription;
+
     cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
     
     [cell setNeedsLayout];
@@ -150,10 +173,10 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WBSEpisode *episode = [self.episodes objectAtIndex:indexPath.row];
+    WBSEpisode *episode = [self episodeForIndexPath:indexPath];
     
     WBSFantorangenEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFantorangenEpisodesTableViewCellReuseIdentifier];
-    cell.episode = episode;
+    [cell setEpisode:episode visibility:NO];
 
     cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
 
@@ -172,7 +195,8 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 - (void)episodeRefresh:(NSURL *)episodeURL
 {
     WBSEpisode *episode = [self.episodeManager episodeForURL:episodeURL];
-    [self.mutableEpisodeURLToEpisode setObject:episode forKey:episodeURL];
+
+    [self.programStorage addEpisode:episode];
     [self.tableView reloadData];
 }
 
@@ -182,54 +206,51 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 - (IBAction)didPressShuffleButton:(id)sender
 {
-    NSArray *randomizedEpisodes = [[self episodes] randomOrder]
-    ;
-    [self performSegueWithIdentifier:kFantorangenEpisodeViewControllerSegue sender:randomizedEpisodes];
+//    NSArray *randomizedEpisodes = [[self episodes] randomOrder]
+//    ;
+//    [self performSegueWithIdentifier:kFantorangenEpisodeViewControllerSegue sender:randomizedEpisodes];
 }
 
 
 
 #pragma mark - Getters
 
-- (NSMutableDictionary *)mutableEpisodeURLToEpisode
+- (WBSProgramStorage *)programStorage
 {
-    if (_mutableEpisodeURLToEpisode == nil) {
-        self.mutableEpisodeURLToEpisode = [[NSMutableDictionary alloc] init];
+    if (_programStorage == nil) {
+        self.programStorage = [[WBSProgramStorage alloc] init];
     }
-    
-    return _mutableEpisodeURLToEpisode;
+
+    return _programStorage;
 }
 
-- (NSArray *)seasons
+- (NSIndexPath *)indexPathForEpisode:(WBSEpisode *)episode
 {
-    NSMutableSet *mutableSeasons = [[NSMutableSet alloc] init];
-    for (WBSEpisode *episode in self.episodes) {
-        [mutableSeasons addObject:episode.season];
+    NSIndexPath *indexPath = nil;
+
+    WBSSeason *season = episode.season;
+    NSInteger section = [self.programStorage.seasons indexOfObject:season];
+    NSArray *episodes = [self.programStorage episodesForSeason:season];
+    NSInteger row = [episodes indexOfObject:episode];
+
+    if (section != NSNotFound && row != NSNotFound) {
+        indexPath = [NSIndexPath indexPathForRow:row inSection:section];
     }
     
-    NSArray *seasons = [[mutableSeasons allObjects] sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *season1 = obj1;
-        NSString *season2 = obj2;
-        return [season1 compare:season2 options:NSCaseInsensitiveSearch|NSNumericSearch];
-    }];
-    
-    return seasons;
+    return indexPath;
 }
 
-- (NSArray *)episodes
+- (WBSEpisode *)episodeForIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *episodes = [[self.mutableEpisodeURLToEpisode allValues] sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(id obj1, id obj2) {
-        WBSEpisode *episode1 = obj1;
-        WBSEpisode *episode2 = obj2;
-        return [episode1.episodeTitle compare:episode2.episodeTitle options:NSCaseInsensitiveSearch|NSNumericSearch];
-    }];
-    
-    return episodes;
+    WBSSeason *season = [self.programStorage.seasons objectAtIndex:indexPath.section];
+    WBSEpisode *episode = [[self.programStorage episodesForSeason:season] objectAtIndex:indexPath.row];
+
+    return episode;
 }
 
 - (NSArray *)episodeQueueFromEpisode:(WBSEpisode *)episode randomized:(BOOL)shuffle
 {
-    NSArray *episodes = [self episodes];
+    NSArray *episodes = nil; //[self episodes];
     NSUInteger index = [episodes indexOfObject:episode];
     NSRange range = NSMakeRange(index, [episodes count] - index);
     return [episodes subarrayWithRange:range];

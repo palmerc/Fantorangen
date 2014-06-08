@@ -14,11 +14,4 @@ NSString *const kWBSFantorangenEpisodesSectionTableViewCellReuseIdentifier = @"W
 
 @implementation WBSFantorangenEpisodesSectionTableViewCell
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    
-    self.backgroundColor = [UIColor lightGrayColor];
-}
-
 @end

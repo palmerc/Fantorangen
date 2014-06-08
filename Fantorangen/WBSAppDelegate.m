@@ -24,6 +24,8 @@ static NSString *const kNewRelicSDKKey = @"AAc5e4ecfc6e24d94b50e23eba991902aa6df
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
 
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+
+    [application beginReceivingRemoteControlEvents];
     
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
@@ -62,5 +64,73 @@ static NSString *const kNewRelicSDKKey = @"AAc5e4ecfc6e24d94b50e23eba991902aa6df
 {
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
 }
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
+    DDLogVerbose(@"%s - %@", __PRETTY_FUNCTION__, event);
+    if ( event.type == UIEventTypeRemoteControl ) {
+        switch (event.subtype) {
+            case UIEventSubtypeRemoteControlPlay:
+//                [[NSBPPlayer sharedPlayer] resume];
+                break;
+            case UIEventSubtypeRemoteControlPause:
+//                [[NSBPPlayer sharedPlayer] pause];
+                break;
+            case UIEventSubtypeRemoteControlStop:
+//                [[NSBPPlayer sharedPlayer] stop];
+                break;
+            case UIEventSubtypeRemoteControlTogglePlayPause:
+//                [[NSBPPlayer sharedPlayer] playOrPause];
+                break;
+            case UIEventSubtypeRemoteControlNextTrack:
+//                [[NSBPPlayer sharedPlayer] skipToNextTrack];
+                break;
+            case UIEventSubtypeRemoteControlPreviousTrack:
+//                [[NSBPPlayer sharedPlayer] skipToPreviousTrack];
+                break;
+            case UIEventSubtypeRemoteControlBeginSeekingBackward:
+//                [[NSBPPlayer sharedPlayer] beginSeekReverse];
+                break;
+            case UIEventSubtypeRemoteControlEndSeekingBackward:
+//                [[NSBPPlayer sharedPlayer] endSeekReverse];
+                break;
+            case UIEventSubtypeRemoteControlBeginSeekingForward:
+//                [[NSBPPlayer sharedPlayer] beginSeekForward];
+                break;
+            case UIEventSubtypeRemoteControlEndSeekingForward:
+//                [[NSBPPlayer sharedPlayer] endSeekForward];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
+#pragma mark - Appearance Proxy Setup
+
+- (void)appearanceProxySetup
+{
+    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17.0f];
+
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName : titleFont}];
+
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
+
+
+#pragma mark - Update the Settings Bundle
+
+- (void)updateVersionBuildStringInSettingsBundle
+{
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+}
+
 
 @end

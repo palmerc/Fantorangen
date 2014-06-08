@@ -11,6 +11,7 @@
 #import <AFNetworking/AFHTTPRequestOperationManager.h>
 #import <hpple/TFHpple.h>
 
+#import "WBSSeason.h"
 #import "WBSEpisode.h"
 #import "WBSFantorangenWebViewOperation.h"
 
@@ -63,7 +64,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
             [self processSeasonElements:elements];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+        DDLogError(@"%@", error);
     }];
 }
 
@@ -99,7 +100,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     NSRange seriesTitleRange = NSMakeRange(0, episodeNumberStartRange.location);
                     NSString *seriesTitle = [[title substringWithRange:seriesTitleRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                     
-                    NSString *season = [[seasonTag text] stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
+                    NSString *seasonString = [[seasonTag text] stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
                     
                     NSArray *descriptionElements = [[airElement firstChildWithClassName:@"description"] children];
                     NSMutableArray *descriptionComponents = [[NSMutableArray alloc] initWithCapacity:[descriptionElements count]];
@@ -123,6 +124,10 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                             }
                         }
                     }
+
+                    WBSSeason *season = [[WBSSeason alloc] init];
+                    season.identifier = seasonString;
+                    season.seasonDescription = seasonString;
                     
                     WBSEpisode *episode = [[WBSEpisode alloc] init];
                     episode.identifier = episodeIdentifier;
@@ -144,7 +149,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                 [self fetchVideoURLs];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"%@", error);
+            DDLogError(@"%@", error);
         }];
     }
 }

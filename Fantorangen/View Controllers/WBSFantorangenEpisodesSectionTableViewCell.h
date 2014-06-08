@@ -14,7 +14,6 @@ extern NSString *const kWBSFantorangenEpisodesSectionTableViewCellReuseIdentifie
 
 @interface WBSFantorangenEpisodesSectionTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *seasonLabel;
 
