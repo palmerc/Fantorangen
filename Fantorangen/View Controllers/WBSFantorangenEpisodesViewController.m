@@ -13,7 +13,7 @@
 #import "WBSProgramStorage.h"
 #import "WBSSeason.h"
 #import "WBSEpisode.h"
-#import "WBSFantorangenEpisodesSectionTableViewCell.h"
+#import "WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.h"
 #import "WBSFantorangenEpisodeTableViewCell+WBSEpisode.h"
 #import "WBSFantorangenEpisodeViewController.h"
 #import "NSArray+RandomOrder.h"
@@ -90,13 +90,11 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    WBSFantorangenEpisodesSectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kWBSFantorangenEpisodesSectionTableViewCellReuseIdentifier];
-    
-    WBSEpisode *episode = nil;//[self.episodes firstObject];
-    
-    cell.titleLabel.text = episode.seriesTitle;
-    cell.seasonLabel.text = episode.season.seasonDescription;
+    WBSEpisode *episode = [self.programStorage.episodes firstObject];
 
+    WBSFantorangenEpisodesSectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kWBSFantorangenEpisodesSectionTableViewCellReuseIdentifier];
+    [cell setSeason:episode.season];
+    
     return cell;
 }
 
@@ -135,7 +133,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 {
     BOOL shouldHighlightRow = NO;
 
-    WBSEpisode *episode = nil;//[self.episodes objectAtIndex:indexPath.row];
+    WBSEpisode *episode = [self episodeForIndexPath:indexPath];
     if (episode.availability == kWBSEpisodeAvailabilityAvailable) {
         shouldHighlightRow = YES;
     }
@@ -147,7 +145,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    WBSEpisode *episode = nil;//[self.episodes objectAtIndex:indexPath.row];
+    WBSEpisode *episode = [self episodeForIndexPath:indexPath];
     if (episode.availability == kWBSEpisodeAvailabilityAvailable) {
         [self performSegueWithIdentifier:kFantorangenEpisodeViewControllerSegue sender:episode];
     }
@@ -155,13 +153,10 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    WBSEpisode *episode = nil;// [self.episodes firstObject];
+    WBSEpisode *episode = [self.programStorage.episodes firstObject];
     
     WBSFantorangenEpisodesSectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kWBSFantorangenEpisodesSectionTableViewCellReuseIdentifier];
-    cell.titleLabel.text = episode.seriesTitle;
-    cell.seasonLabel.text = episode.season.seasonDescription;
-
-    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
+    [cell setSeason:episode.season];
     
     [cell setNeedsLayout];
     [cell layoutIfNeeded];
@@ -177,8 +172,6 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     
     WBSFantorangenEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFantorangenEpisodesTableViewCellReuseIdentifier];
     [cell setEpisode:episode visibility:NO];
-
-    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
 
     [cell setNeedsLayout];
     [cell layoutIfNeeded];

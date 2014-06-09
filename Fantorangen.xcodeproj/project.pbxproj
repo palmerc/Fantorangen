@@ -12,6 +12,7 @@
 		C718B9791943A1EF00996736 /* WBSFantorangenEpisodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */; };
 		C718B97C1944412300996736 /* WBSProgramStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = C718B97B1944412300996736 /* WBSProgramStorage.m */; };
 		C718B97F19444E2000996736 /* WBSSeason.m in Sources */ = {isa = PBXBuildFile; fileRef = C718B97E19444E2000996736 /* WBSSeason.m */; };
+		C718B9821945DE4C00996736 /* WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.m in Sources */ = {isa = PBXBuildFile; fileRef = C718B9811945DE4C00996736 /* WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.m */; };
 		C779F52018763507002E75EF /* WBSAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F50E18763507002E75EF /* WBSAVPlayerView.m */; };
 		C779F52118763507002E75EF /* WBSAVPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51018763507002E75EF /* WBSAVPlayerViewController.m */; };
 		C779F52218763507002E75EF /* WBSFantorangenEpisodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51318763507002E75EF /* WBSFantorangenEpisodeManager.m */; };
@@ -59,6 +60,8 @@
 		C718B97B1944412300996736 /* WBSProgramStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSProgramStorage.m; sourceTree = "<group>"; };
 		C718B97D19444E2000996736 /* WBSSeason.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSSeason.h; sourceTree = "<group>"; };
 		C718B97E19444E2000996736 /* WBSSeason.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSSeason.m; sourceTree = "<group>"; };
+		C718B9801945DE4C00996736 /* WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.h"; sourceTree = "<group>"; };
+		C718B9811945DE4C00996736 /* WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.m"; sourceTree = "<group>"; };
 		C779F50D18763507002E75EF /* WBSAVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVPlayerView.h; sourceTree = "<group>"; };
 		C779F50E18763507002E75EF /* WBSAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSAVPlayerView.m; sourceTree = "<group>"; };
 		C779F50F18763507002E75EF /* WBSAVPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVPlayerViewController.h; sourceTree = "<group>"; };
@@ -192,6 +195,8 @@
 				C7DBBC7518786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m */,
 				C7DBBC7A187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.h */,
 				C7DBBC7B187B65DA00DC6C22 /* WBSFantorangenEpisodesSectionTableViewCell.m */,
+				C718B9801945DE4C00996736 /* WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.h */,
+				C718B9811945DE4C00996736 /* WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.m */,
 				C7DBBC77187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.h */,
 				C7DBBC78187875BA00DC6C22 /* WBSFantorangenEpisodeTableViewCell.m */,
 				C718B9761943A06100996736 /* WBSFantorangenEpisodeTableViewCell+WBSEpisode.h */,
@@ -432,6 +437,7 @@
 				C779F52218763507002E75EF /* WBSFantorangenEpisodeManager.m in Sources */,
 				C7DBBC7618786FC500DC6C22 /* WBSFantorangenEpisodesViewController.m in Sources */,
 				C7BE20431872BD590039F44A /* WBSAppDelegate.m in Sources */,
+				C718B9821945DE4C00996736 /* WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.m in Sources */,
 				C7ADB0D21885E86900BE2ED9 /* UIImage+Resize.m in Sources */,
 				C779F52618763507002E75EF /* main.m in Sources */,
 				C779F52018763507002E75EF /* WBSAVPlayerView.m in Sources */,

@@ -8,6 +8,16 @@
 
 #import "WBSFantorangenEpisodesSectionTableViewCell+WBSSeason.h"
 
+#import "WBSSeason.h"
+
+
+
 @implementation WBSFantorangenEpisodesSectionTableViewCell (WBSSeason)
+
+- (void)setSeason:(WBSSeason *)season
+{
+    self.titleLabel.text = season.seriesTitle;
+    self.seasonLabel.text = season.seasonDescription;
+}
 
 @end
