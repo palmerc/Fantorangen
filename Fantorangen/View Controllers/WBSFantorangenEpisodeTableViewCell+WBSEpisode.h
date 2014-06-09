@@ -12,8 +12,6 @@
 
 @interface WBSFantorangenEpisodeTableViewCell (WBSEpisode)
 
-+ (CGFloat)heightForCellWithEpisode:(WBSEpisode *)episode;
-
 - (void)setEpisode:(WBSEpisode *)episode visibility:(BOOL)isVisible;
 
 @end

@@ -13,6 +13,7 @@
 @interface WBSSeason : NSObject <NSCoding>
 
 @property (copy, nonatomic) NSString *identifier;
+@property (copy, nonatomic) NSString *seriesTitle;
 @property (copy, nonatomic) NSString *seasonDescription;
 
 @end

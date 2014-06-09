@@ -17,6 +17,7 @@
     self = [super init];
     if (self != nil) {
         _identifier = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(identifier))];
+        _seriesTitle = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(seriesTitle))];
         _seasonDescription = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(seasonDescription))];
     }
 
@@ -26,6 +27,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.identifier forKey:NSStringFromSelector(@selector(identifier))];
+    [aCoder encodeObject:self.seriesTitle forKey:NSStringFromSelector(@selector(seriesTitle))];
     [aCoder encodeObject:self.seasonDescription forKey:NSStringFromSelector(@selector(seasonDescription))];
 }
 

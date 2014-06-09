@@ -127,6 +127,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
 
                     WBSSeason *season = [[WBSSeason alloc] init];
                     season.identifier = seasonString;
+                    season.seriesTitle = seriesTitle;
                     season.seasonDescription = seasonString;
                     
                     WBSEpisode *episode = [[WBSEpisode alloc] init];
