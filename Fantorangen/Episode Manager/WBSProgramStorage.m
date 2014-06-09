@@ -14,6 +14,7 @@
 
 
 @interface WBSProgramStorage ()
+@property (strong, nonatomic, readonly) NSURL *archiveURL;
 @property (strong, nonatomic) NSMapTable *seasonsToEpisodes;
 
 @end
@@ -21,6 +22,21 @@
 
 
 @implementation WBSProgramStorage
+
+- (void)dealloc
+{
+    [NSKeyedArchiver archiveRootObject:self.seasonsToEpisodes toFile:[self.archiveURL path]];
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self != nil) {
+        _seasonsToEpisodes = [NSKeyedUnarchiver unarchiveObjectWithFile:[self.archiveURL path]];
+    }
+
+    return self;
+}
 
 - (NSArray *)seasons
 {
@@ -38,6 +54,30 @@
         }];
 
         return seasons;
+    }
+}
+
+- (NSArray *)episodes
+{
+    @synchronized(self.seasonsToEpisodes) {
+        NSMutableArray *mutableEpisodes = [[NSMutableArray alloc] init];
+        for (NSSet *episodes in [self.seasonsToEpisodes objectEnumerator]) {
+            [mutableEpisodes addObjectsFromArray:[episodes allObjects]];
+        }
+
+        NSArray *episodes = [mutableEpisodes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            WBSEpisode *episode1 = obj1;
+            WBSEpisode *episode2 = obj2;
+
+            NSComparisonResult episodeComparison = [episode1.season.identifier compare:episode2.season.identifier options:NSCaseInsensitiveSearch|NSNumericSearch];
+            if (episodeComparison == NSOrderedSame) {
+                episodeComparison = [episode1.identifier compare:episode2.identifier options:NSCaseInsensitiveSearch|NSNumericSearch];
+            }
+
+            return episodeComparison;
+        }];
+
+        return episodes;
     }
 }
 
@@ -65,7 +105,12 @@
         if (episodes == nil) {
             episodes = [NSSet setWithObject:episode];
         } else {
-            episodes = [episodes setByAddingObject:episode];
+            if ([episodes containsObject:episode]) {
+                WBSEpisode *existingEpisode = [episodes member:episode];
+                [existingEpisode updateWithEpisode:episode];
+            } else {
+                episodes = [episodes setByAddingObject:episode];
+            }
         }
 
         [self.seasonsToEpisodes setObject:episodes forKey:season];
@@ -86,6 +131,19 @@
     }
 
     return _seasonsToEpisodes;
+}
+
+- (NSURL *)archiveURL
+{
+    NSError *error = nil;
+    NSURL *cachesURL = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    if (error != nil) {
+        DDLogError(@"%@", error);
+    }
+
+    NSURL *fileURL = [cachesURL URLByAppendingPathComponent:@"ProgramStorage.cache"];
+
+    return fileURL;
 }
 
 @end
