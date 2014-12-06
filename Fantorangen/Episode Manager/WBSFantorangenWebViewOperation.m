@@ -26,6 +26,8 @@
 
 
 @implementation WBSFantorangenWebViewOperation
+@synthesize executing = _executing;
+@synthesize finished = _finished;
 
 - (id)init
 {
