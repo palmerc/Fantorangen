@@ -31,6 +31,11 @@ static NSString *const kPlayerItemPresentationSizeKey = @"presentationSize";
     return [AVPlayerLayer class];
 }
 
+- (void)dealloc
+{
+    [self.currentPlayerItem removeObserver:self forKeyPath:kPlayerItemPresentationSizeKey];
+}
+
 - (AVPlayer *)player
 {
     return [(AVPlayerLayer *)[self layer] player];

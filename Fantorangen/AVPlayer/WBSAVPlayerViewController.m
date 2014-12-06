@@ -18,6 +18,8 @@
 static void *AVPlayerItemObservationContext = &AVPlayerItemObservationContext;
 static void *AVPlayerObservationContext = &AVPlayerObservationContext;
 
+NSString *const kAVPlayerItemDidPlayToEndTimeNotification = @"AVPlayerItemDidPlayToEndTimeNotification";
+
 /* AVURLAsset keys */
 NSString *const kAVURLAssetTracksKey = @"tracks";
 NSString *const kAVURLAssetPlayableKey = @"playable";
@@ -69,7 +71,8 @@ NSString *const kAVPlayerCurrentItemKey = @"currentItem";
 - (void)dealloc
 {
     [self removePlayerTimeObserver];
-    
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAVPlayerItemDidPlayToEndTimeNotification object:self.playerItem];
     [self.player removeObserver:self forKeyPath:kAVPlayerRateKey];
     [self.player removeObserver:self forKeyPath:kAVPlayerCurrentItemKey];
     [self.player.currentItem removeObserver:self forKeyPath:kAVPlayerItemStatusKey];
