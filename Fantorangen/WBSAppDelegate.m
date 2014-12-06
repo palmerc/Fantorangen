@@ -11,6 +11,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <HockeySDK/HockeySDK.h>
 #import <NewRelicAgent/NewRelic.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 static NSString *const kHockeySDKBetaKey = @"960b7c9d44b074ccb2b518fe87a8f5b7";
 static NSString *const kNewRelicSDKKey = @"AAc5e4ecfc6e24d94b50e23eba991902aa6df41435";
@@ -22,6 +24,7 @@ static NSString *const kNewRelicSDKKey = @"AAc5e4ecfc6e24d94b50e23eba991902aa6df
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+    [Fabric with:@[CrashlyticsKit]];
 
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     

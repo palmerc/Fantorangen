@@ -18,15 +18,15 @@ PODS:
   - AFNetworking/UIKit (2.2.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CocoaLumberjack (1.9.0):
+  - CocoaLumberjack (1.9.2):
     - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.9.0)
-  - CocoaLumberjack/Extensions (1.9.0):
+  - CocoaLumberjack/Core (1.9.2)
+  - CocoaLumberjack/Extensions (1.9.2):
     - CocoaLumberjack/Core
-  - HockeySDK (3.5.5)
+  - HockeySDK (3.5.7)
   - hpple (0.2.0)
-  - NewRelicAgent (3.324)
-  - Reveal-iOS-SDK (1.0.4)
+  - NewRelicAgent (3.412)
+  - Reveal-iOS-SDK (1.0.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2.4)
@@ -38,10 +38,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
-  CocoaLumberjack: 5766cdd1d0a24bcf15a133c6023747346bf786dd
-  HockeySDK: f9af97c2f5df4eb6ca6d2a9c408f2ff498edd608
+  CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
+  HockeySDK: f0e874d1c6833163ee0c4e423606faf33ad04071
   hpple: f4eb7c21a8db83ec264e5d614ec7509e10e5adec
-  NewRelicAgent: 36d31c220b7a7fa2c83a71df87c62d48d0c7d1c4
-  Reveal-iOS-SDK: d3c8e109d42219daaa7a6e1ad2de34f0bdbb7a88
+  NewRelicAgent: 5b293148e4ecbcc660630a1001d0a8b0fadaad87
+  Reveal-iOS-SDK: 74a39b426dbc915962704ed24f43ee32ae7797f9
 
 COCOAPODS: 0.33.1

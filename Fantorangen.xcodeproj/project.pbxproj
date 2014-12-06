@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BB9DDEB58975410C9E19284D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3BB67197C5456097DF74C7 /* libPods.a */; };
+		C76CF1591A0A7F140079FBF3 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C76CF1571A0A7F140079FBF3 /* Crashlytics.framework */; };
+		C76CF15A1A0A7F140079FBF3 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C76CF1581A0A7F140079FBF3 /* Fabric.framework */; };
 		C779F52018763507002E75EF /* WBSAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F50E18763507002E75EF /* WBSAVPlayerView.m */; };
 		C779F52118763507002E75EF /* WBSAVPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51018763507002E75EF /* WBSAVPlayerViewController.m */; };
 		C779F52218763507002E75EF /* WBSFantorangenEpisodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C779F51318763507002E75EF /* WBSFantorangenEpisodeManager.m */; };
@@ -50,6 +52,8 @@
 /* Begin PBXFileReference section */
 		49FBD68575E64DC6B845FD75 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8F3BB67197C5456097DF74C7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C76CF1571A0A7F140079FBF3 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		C76CF1581A0A7F140079FBF3 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		C779F50D18763507002E75EF /* WBSAVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVPlayerView.h; sourceTree = "<group>"; };
 		C779F50E18763507002E75EF /* WBSAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSAVPlayerView.m; sourceTree = "<group>"; };
 		C779F50F18763507002E75EF /* WBSAVPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSAVPlayerViewController.h; sourceTree = "<group>"; };
@@ -104,9 +108,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7BE20351872BD590039F44A /* CoreGraphics.framework in Frameworks */,
+				C76CF1591A0A7F140079FBF3 /* Crashlytics.framework in Frameworks */,
 				C7BE20371872BD590039F44A /* UIKit.framework in Frameworks */,
 				C7BE20331872BD590039F44A /* Foundation.framework in Frameworks */,
 				BB9DDEB58975410C9E19284D /* libPods.a in Frameworks */,
+				C76CF15A1A0A7F140079FBF3 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +203,8 @@
 		C7BE20261872BD590039F44A = {
 			isa = PBXGroup;
 			children = (
+				C76CF1571A0A7F140079FBF3 /* Crashlytics.framework */,
+				C76CF1581A0A7F140079FBF3 /* Fabric.framework */,
 				C7BE20381872BD590039F44A /* Fantorangen */,
 				C7BE20571872BD590039F44A /* FantorangenTests */,
 				C7BE20311872BD590039F44A /* Frameworks */,
@@ -277,6 +285,7 @@
 				C7BE202C1872BD590039F44A /* Frameworks */,
 				C7BE202D1872BD590039F44A /* Resources */,
 				F3EDA83F5F48424AB790029D /* Copy Pods Resources */,
+				C76CF1561A0A7E910079FBF3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -312,7 +321,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = WBS;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Wolf and Bear Studios";
 				TargetAttributes = {
 					C7BE202E1872BD590039F44A = {
@@ -368,6 +377,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		C76CF1561A0A7E910079FBF3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 7378f55597c1d4bda19c0f5ec8417d8f60885929 88c306bf975fc1ee738b041122b00c9fd5bf6428ca7b1d978b5c8b166cca7703";
+		};
 		F1F5CAD742AC4DEFAD0B3E15 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,7 +496,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -513,7 +534,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -548,6 +568,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Fantorangen/Supporting Files/Fantorangen-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Fantorangen/Supporting Files/Fantorangen-Info.plist";
@@ -562,6 +586,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Fantorangen/Supporting Files/Fantorangen-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Fantorangen/Supporting Files/Fantorangen-Info.plist";
@@ -573,7 +601,6 @@
 		C7BE20651872BD590039F44A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fantorangen.app/Fantorangen";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -596,7 +623,6 @@
 		C7BE20661872BD590039F44A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Fantorangen.app/Fantorangen";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
