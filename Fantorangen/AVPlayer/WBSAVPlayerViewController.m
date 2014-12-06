@@ -75,8 +75,8 @@ NSString *const kAVPlayerCurrentItemKey = @"currentItem";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kAVPlayerItemDidPlayToEndTimeNotification object:self.playerItem];
     [self.player removeObserver:self forKeyPath:kAVPlayerRateKey];
     [self.player removeObserver:self forKeyPath:kAVPlayerCurrentItemKey];
-    [self.player.currentItem removeObserver:self forKeyPath:kAVPlayerItemStatusKey];
-    [self.player.currentItem removeObserver:self forKeyPath:kAVPlayerItemLoadedTimeRangesKey];
+    [self.playerItem removeObserver:self forKeyPath:kAVPlayerItemStatusKey];
+    [self.playerItem removeObserver:self forKeyPath:kAVPlayerItemLoadedTimeRangesKey];
     
     [self.player pause];
 }
@@ -410,10 +410,10 @@ NSString *const kAVPlayerCurrentItemKey = @"currentItem";
     
     NSMutableArray *mutableTimeComponents = [[NSMutableArray alloc] init];
     if (hours > 0) {
-        [mutableTimeComponents addObject:[NSString stringWithFormat:@"%i", hours]];
+        [mutableTimeComponents addObject:[NSString stringWithFormat:@"%lu", (unsigned long)hours]];
     }
-    [mutableTimeComponents addObject:[NSString stringWithFormat:@"%02i", minutes]];
-    [mutableTimeComponents addObject:[NSString stringWithFormat:@"%02i", seconds]];
+    [mutableTimeComponents addObject:[NSString stringWithFormat:@"%02lu", (unsigned long)minutes]];
+    [mutableTimeComponents addObject:[NSString stringWithFormat:@"%02lu", (unsigned long)seconds]];
     
     NSString *videoDurationText = [mutableTimeComponents componentsJoinedByString:@":"];
     return videoDurationText;
@@ -690,7 +690,8 @@ NSString *const kAVPlayerCurrentItemKey = @"currentItem";
     /* Stop observing our prior AVPlayerItem, if we have one. */
     if (self.playerItem) {
         /* Remove existing player item key value observers and notifications. */
-        
+
+        [self.playerItem removeObserver:self forKeyPath:kAVPlayerItemLoadedTimeRangesKey];
         [self.playerItem removeObserver:self forKeyPath:kAVPlayerItemStatusKey];
         
         [[NSNotificationCenter defaultCenter] removeObserver:self
