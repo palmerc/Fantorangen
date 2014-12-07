@@ -34,7 +34,14 @@ static CGFloat kEpisodeTransmissionInformationLabelWidth = 304.0f;
     
     self.episodeNumberLabel.text = episode.episodeNumber;
     self.episodeSummaryLabel.text = episode.summary;
-    self.episodeTransmissionInformationLabel.text = episode.transmissionInformation;
+
+    NSURLRequest *preflightRequest = [[NSURLRequest alloc] initWithURL:episode.videoURL];
+    if (episode.availability == kWBSEpisodeAvailabilityAvailable &&
+        [NSURLConnection canHandleRequest:preflightRequest]) {
+        self.episodeTransmissionInformationLabel.text = episode.transmissionInformation;
+    } else {
+        self.episodeTransmissionInformationLabel.text = NSLocalizedString(@"NOT_AVAILABLE", @"Ikke tilgjengelig akkurat nå");
+    }
 }
 
 
