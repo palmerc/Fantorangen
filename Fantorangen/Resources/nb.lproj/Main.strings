@@ -1,0 +1,18 @@
+
+/* Class = "IBUILabel"; text = "Transmission Information"; ObjectID = "2S9-Zw-ZOa"; */
+"2S9-Zw-ZOa.text" = "Transmission Information";
+
+/* Class = "IBUILabel"; text = "TV Show"; ObjectID = "Ez6-gg-i3y"; */
+"Ez6-gg-i3y.text" = "TV Show";
+
+/* Class = "IBUILabel"; text = "Description"; ObjectID = "G6C-iA-6pi"; */
+"G6C-iA-6pi.text" = "Description";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "VeC-Tp-1F8"; */
+"VeC-Tp-1F8.text" = "0";
+
+/* Class = "IBUIBarButtonItem"; title = "Shuffle"; ObjectID = "YmK-bC-Hud"; */
+"YmK-bC-Hud.title" = "Shuffle";
+
+/* Class = "IBUILabel"; text = "Season"; ObjectID = "jyi-WW-1Qr"; */
+"jyi-WW-1Qr.text" = "Season";
