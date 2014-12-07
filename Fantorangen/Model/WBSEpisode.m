@@ -47,6 +47,11 @@
     [aCoder encodeInteger:self.availability forKey:NSStringFromSelector(@selector(availability))];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ - %@", self.episodeNumber, self.episodeURL];
+}
+
 - (NSUInteger)hash
 {
     return [self.identifier hash];
