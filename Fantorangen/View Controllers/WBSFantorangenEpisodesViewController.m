@@ -172,7 +172,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 - (void)episodeRefresh:(NSURL *)episodeURL
 {
     WBSEpisode *episode = [self.episodeManager episodeForURL:episodeURL];
-    [self.mutableEpisodeURLToEpisode setObject:episode forKey:episodeURL];
+    self.mutableEpisodeURLToEpisode[episodeURL] = episode;
     [self.tableView reloadData];
 }
 
