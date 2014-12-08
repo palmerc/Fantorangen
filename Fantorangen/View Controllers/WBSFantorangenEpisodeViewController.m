@@ -64,18 +64,18 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
 
     WBSEpisode *episode = [self.mutableEpisodeQueue dequeue];
-    if (episode == nil) {
+    NSURL *videoURL = episode.videoURL;
+    NSURLRequest *request = [NSURLRequest requestWithURL:videoURL];
+    if (episode == nil ||
+        episode.availability == kWBSEpisodeAvailabilityUnavailable ||
+        ![NSURLConnection canHandleRequest:request]) {
+        DDLogError(@"Unable to play episode with URL: %@", videoURL);
         [self.navigationController popViewControllerAnimated:YES];
-    } else if (episode.availability == kWBSEpisodeAvailabilityUnavailable) {
-        [self startPlaying];
     } else {
-        NSString *episodeTitle = episode.episodeTitle;
-        self.title = episodeTitle;
-        
-        NSURL *videoURL = episode.videoURL;
+        self.title = episode.episodeTitle;
         self.AVPlayerViewController.URL = videoURL;
-        
-        NSLog(@"%@ - %@", episodeTitle, videoURL);
+
+        DDLogVerbose(@"Playing %@ - %@", self.title, videoURL);
     }
 }
 
