@@ -24,6 +24,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
 @property (strong, nonatomic) NSURL *NRKTVURL;
 @property (strong, nonatomic) NSMutableDictionary *mutableEpisodeURLToEpisode;
 @property (strong, nonatomic) AFHTTPRequestOperationManager *requestOperationManager;
+@property (strong, nonatomic) NSOperationQueue *webviewProcessingQueue;
 
 @end
 
@@ -36,9 +37,14 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
     self = [super init];
     if (self != nil) {
         _NRKTVURL = [NSURL URLWithString:kNRKBaseURLString];
+
+        NSOperationQueue *webviewProcessingQueue = [[NSOperationQueue alloc] init];
+        webviewProcessingQueue.maxConcurrentOperationCount = [[NSProcessInfo processInfo] processorCount];
+        webviewProcessingQueue.name = @"WebView Processing Queue";
+        self.webviewProcessingQueue = webviewProcessingQueue;
         
         AFHTTPRequestOperationManager *requestOperationManager = [AFHTTPRequestOperationManager manager];
-        
+
         AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
         [requestSerializer setValue:kClientUserAgent forHTTPHeaderField:@"User-Agent"];
         requestOperationManager.requestSerializer = requestSerializer;
@@ -53,7 +59,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
 
 - (void)beginEpisodeUpdates
 {
-    NSURL *fantorangenURL = [NSURL URLWithString:[kNRKBaseURLString stringByAppendingString:kFantorangenSeries]];
+    NSURL *fantorangenURL = [NSURL URLWithString:kFantorangenSeries relativeToURL:self.NRKTVURL];
     [self.requestOperationManager GET:[fantorangenURL absoluteString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject isKindOfClass:[NSData class]]) {
             NSData *HTMLData = responseObject;
@@ -63,7 +69,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
             [self processSeasonElements:elements];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+        DDLogError(@"%@", error);
     }];
 }
 
@@ -137,25 +143,17 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     
                     NSURL *episodeURL = episode.episodeURL;
                     if (episodeURL != nil) {
-                        [self.mutableEpisodeURLToEpisode setObject:episode forKey:episode.episodeURL];
+                        DDLogDebug(@"Adding episode, %@", episode);
+                        self.mutableEpisodeURLToEpisode[episode.episodeURL] = episode;
+                        WBSFantorangenWebViewOperation *webViewOperation = [[WBSFantorangenWebViewOperation alloc] initWithURL:episode.episodeURL];
+                        webViewOperation.delegate = self;
+                        [self.webviewProcessingQueue addOperation:webViewOperation];
                     }
                 }
-                
-                [self fetchVideoURLs];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"%@", error);
+            DDLogError(@"Failed to fetch episodes. %@", error);
         }];
-    }
-}
-
-- (void)fetchVideoURLs
-{
-    NSOperationQueue *operationQueue = [NSOperationQueue mainQueue];
-    for (WBSEpisode *episode in self.episodes) {
-        WBSFantorangenWebViewOperation *webViewOperation = [[WBSFantorangenWebViewOperation alloc] initWithURL:episode.episodeURL];
-        webViewOperation.delegate = self;
-        [operationQueue addOperation:webViewOperation];
     }
 }
 
@@ -165,7 +163,7 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
 
 - (void)webViewOperationDidFinish:(WBSFantorangenWebViewOperation *)webViewOperation
 {
-    WBSEpisode *episode = [self.episodeURLToEpisode objectForKey:webViewOperation.episodeURL];
+    WBSEpisode *episode = self.episodeURLToEpisode[webViewOperation.episodeURL];
     episode.videoURL = webViewOperation.videoURL;
     episode.posterURL = webViewOperation.posterURL;
 
