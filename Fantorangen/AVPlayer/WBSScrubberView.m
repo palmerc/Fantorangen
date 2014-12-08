@@ -86,7 +86,8 @@
     
     // TimelineSlider
     UISlider *timelineSlider = [[UISlider alloc] init];
-    [timelineSlider addTarget:self action:@selector(didTouchTimelineSlider:) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchDown];
+    [timelineSlider addTarget:self action:@selector(didTouchDownTimelineSlider:) forControlEvents:UIControlEventTouchDown];
+    [timelineSlider addTarget:self action:@selector(didTouchUpTimelineSlider:) forControlEvents:UIControlEventTouchUpInside];
     [timelineSlider addTarget:self action:@selector(didSlideTimelineSlider:) forControlEvents:UIControlEventValueChanged];
     timelineSlider.translatesAutoresizingMaskIntoConstraints = NO;
     [sliderProgressContainer addSubview:timelineSlider];
@@ -128,13 +129,21 @@
 
 #pragma mark - IBActions
 
-- (IBAction)didTouchTimelineSlider:(id)sender
+- (IBAction)didTouchDownTimelineSlider:(id)sender
 {
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
 
-    UISlider *slider = sender;
+    if ([self.delegate respondsToSelector:@selector(didBeginTimecodeChange:)]) {
+        [self.delegate didBeginTimecodeChange:sender];
+    }
+}
+
+- (IBAction)didTouchUpTimelineSlider:(id)sender
+{
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
     if ([self.delegate respondsToSelector:@selector(didEndTimecodeChange:)]) {
-        [self.delegate didEndTimecodeChange:slider];
+        [self.delegate didEndTimecodeChange:sender];
     }
 }
 
@@ -142,9 +151,8 @@
 {
     DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
     
-    UISlider *slider = sender;
     if ([self.delegate respondsToSelector:@selector(didChangeTimecodePercentage:)]) {
-        [self.delegate didChangeTimecodePercentage:slider];
+        [self.delegate didChangeTimecodePercentage:sender];
     }
 }
 
