@@ -15,7 +15,7 @@
 #import <Crashlytics/Crashlytics.h>
 
 static NSString *const kHockeySDKBetaKey = @"960b7c9d44b074ccb2b518fe87a8f5b7";
-static NSString *const kNewRelicSDKKey = @"AAc5e4ecfc6e24d94b50e23eba991902aa6df41435";
+static NSString *const kNewRelicSDKKey = @"AAec230ed311d007bb190cb88a5e5ab2afcbff61e5";
 
 
 
