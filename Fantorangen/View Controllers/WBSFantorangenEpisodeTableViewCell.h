@@ -16,13 +16,13 @@ extern NSString *const kFantorangenEpisodesTableViewCellReuseIdentifier;
 
 @interface WBSFantorangenEpisodeTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) WBSEpisode *episode;
-
 @property (weak, nonatomic) IBOutlet UIView *episodeTitleDescriptionContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *episodeNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *episodeSummaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *episodeTransmissionInformationLabel;
 
 + (CGFloat)heightForCellWithEpisode:(WBSEpisode *)episode;
+
+- (void)updateCellWithEpisode:(WBSEpisode *)episode;
 
 @end

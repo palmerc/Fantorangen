@@ -53,7 +53,6 @@ static NSString *const kWBSAVPlayerViewControllerSegue = @"WBSAVPlayerViewContro
 {
     if ([segue.identifier isEqualToString:kWBSAVPlayerViewControllerSegue]) {
         self.AVPlayerViewController = segue.destinationViewController;
-
     }
 }
 

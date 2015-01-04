@@ -109,8 +109,7 @@ NSString *const kAVPlayerCurrentItemKey = @"currentItem";
 
 - (void)setURL:(NSURL *)URL
 {
-    if (self.URL != URL)
-    {
+    if (self.URL != URL) {
         _URL = [URL copy];
         
         AVURLAsset *asset = [AVURLAsset URLAssetWithURL:self.URL options:nil];
@@ -337,7 +336,8 @@ NSString *const kAVPlayerCurrentItemKey = @"currentItem";
     WBSScrubberView *scrubberView = [[WBSScrubberView alloc] init];
     scrubberView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:scrubberView];
-    
+    scrubberView.delegate = self;
+
     self.av_scrubberView = scrubberView;
     self.scrubberView = scrubberView;
 }
@@ -372,8 +372,8 @@ NSString *const kAVPlayerCurrentItemKey = @"currentItem";
 /* Set the scrubber based on the player current time. */
 - (void)syncScrubber
 {
-    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
-    
+//    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
     CMTime playerDuration = [self playerItemDuration];
     if (CMTIME_IS_INVALID(playerDuration)) {
         self.scrubberView.timelineSlider.minimumValue = 0.0;
@@ -438,21 +438,46 @@ NSString *const kAVPlayerCurrentItemKey = @"currentItem";
 #pragma mark IBActions
 
 /* The user is dragging the movie controller thumb to scrub through the movie. */
-- (IBAction)beginScrubbing:(id)sender
+- (IBAction)didBeginTimecodeChange:(UISlider *)slider
 {
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+    
     self.restoreAfterScrubbingRate = [self.player rate];
-    [self.player setRate:0.f];
+    [self.player pause];
+    self.player.rate = 0.f;
     
     /* Remove previous timer. */
     [self removePlayerTimeObserver];
 }
 
 /* Set the player current time to match the scrubber position. */
-- (IBAction)scrub:(id)sender
+- (IBAction)didChangeTimecodePercentage:(UISlider *)slider
 {
-    if ([sender isKindOfClass:[UISlider class]]) {
-        UISlider *slider = sender;
-        
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
+    CMTime playerDuration = [self playerItemDuration];
+    if (CMTIME_IS_INVALID(playerDuration)) {
+        return;
+    }
+
+    double duration = CMTimeGetSeconds(playerDuration);
+    if (isfinite(duration)) {
+        float minValue = [slider minimumValue];
+        float maxValue = [slider maximumValue];
+        float value = [slider value];
+
+//        double time = duration * (value - minValue) / (maxValue - minValue);
+//
+//        [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
+    }
+}
+
+/* The user has released the movie thumb control to stop scrubbing through the movie. */
+- (IBAction)didEndTimecodeChange:(UISlider *)slider
+{
+    DDLogVerbose(@"%s", __PRETTY_FUNCTION__);
+
+    if (self.timeObserver == nil) {
         CMTime playerDuration = [self playerItemDuration];
         if (CMTIME_IS_INVALID(playerDuration)) {
             return;
@@ -460,31 +485,6 @@ NSString *const kAVPlayerCurrentItemKey = @"currentItem";
         
         double duration = CMTimeGetSeconds(playerDuration);
         if (isfinite(duration)) {
-            float minValue = [slider minimumValue];
-            float maxValue = [slider maximumValue];
-            float value = [slider value];
-            
-            double time = duration * (value - minValue) / (maxValue - minValue);
-            
-            [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
-        }
-    }
-}
-
-/* The user has released the movie thumb control to stop scrubbing through the movie. */
-- (IBAction)endScrubbing:(id)sender
-{
-    if (!self.timeObserver)
-    {
-        CMTime playerDuration = [self playerItemDuration];
-        if (CMTIME_IS_INVALID(playerDuration))
-        {
-            return;
-        }
-        
-        double duration = CMTimeGetSeconds(playerDuration);
-        if (isfinite(duration))
-        {
             CGFloat width = CGRectGetWidth([self.scrubberView bounds]);
             double tolerance = 0.5f * duration / width;
             
@@ -495,9 +495,8 @@ NSString *const kAVPlayerCurrentItemKey = @"currentItem";
         }
     }
     
-    if (self.restoreAfterScrubbingRate)
-    {
-        [self.player setRate:self.restoreAfterScrubbingRate];
+    if (self.restoreAfterScrubbingRate) {
+        self.player.rate = self.restoreAfterScrubbingRate;
         self.restoreAfterScrubbingRate = 0.f;
     }
 }

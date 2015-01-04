@@ -28,16 +28,16 @@ static CGFloat kEpisodeTransmissionInformationLabelWidth = 304.0f;
 
 @implementation WBSFantorangenEpisodeTableViewCell
 
-- (void)setEpisode:(WBSEpisode *)episode
+- (void)updateCellWithEpisode:(WBSEpisode *)episode
 {
-    _episode = episode;
-    
     self.episodeNumberLabel.text = episode.episodeNumber;
     self.episodeSummaryLabel.text = episode.summary;
 
     NSURLRequest *preflightRequest = [[NSURLRequest alloc] initWithURL:episode.videoURL];
+    BOOL preflightSuccess = [NSURLConnection canHandleRequest:preflightRequest];
     if (episode.availability == kWBSEpisodeAvailabilityAvailable &&
-        [NSURLConnection canHandleRequest:preflightRequest]) {
+        [[episode.videoURL absoluteString] length] > 0 &&
+        preflightSuccess) {
         self.episodeTransmissionInformationLabel.text = episode.transmissionInformation;
     } else {
         self.episodeTransmissionInformationLabel.text = NSLocalizedString(@"NOT_AVAILABLE", @"Ikke tilgjengelig akkurat nå");

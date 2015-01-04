@@ -24,8 +24,8 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 @property (strong, nonatomic) WBSFantorangenEpisodeManager *episodeManager;
 
-@property (assign, nonatomic, getter = isFirstRun) BOOL firstRun;
 @property (strong, nonatomic) NSMutableDictionary *mutableEpisodeURLToEpisode;
+@property (strong, nonatomic) NSMutableSet *reloadCellSet;
 
 @property (strong, nonatomic, readonly) NSArray *seasons;
 @property (strong, nonatomic, readonly) NSArray *episodes;
@@ -73,7 +73,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.seasons count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -95,12 +95,29 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WBSEpisode *episode = [self.episodes objectAtIndex:indexPath.row];
-    
-    WBSFantorangenEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFantorangenEpisodesTableViewCellReuseIdentifier];
-    cell.episode = episode;
-        
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFantorangenEpisodesTableViewCellReuseIdentifier];
+    [self configureCell:cell withEpisode:[self episodeForIndexPath:indexPath]];
+
     return cell;
+}
+
+- (void)configureCell:(UITableViewCell *)cell withEpisode:(WBSEpisode *)episode
+{
+    if ([cell isKindOfClass:[WBSFantorangenEpisodeTableViewCell class]]) {
+        WBSFantorangenEpisodeTableViewCell *episodeCell = (WBSFantorangenEpisodeTableViewCell *)cell;
+        [episodeCell updateCellWithEpisode:episode];
+    }
+}
+
+- (WBSEpisode *)episodeForIndexPath:(NSIndexPath *)indexPath
+{
+    return self.episodes[indexPath.row];
+}
+
+- (NSIndexPath *)indexPathForEpisode:(WBSEpisode *)episode
+{
+    NSUInteger row = [self.episodes indexOfObject:episode];
+    return [NSIndexPath indexPathForRow:row inSection:0];
 }
 
 
@@ -153,7 +170,7 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     WBSEpisode *episode = [self.episodes objectAtIndex:indexPath.row];
     
     WBSFantorangenEpisodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFantorangenEpisodesTableViewCellReuseIdentifier];
-    cell.episode = episode;
+    [cell updateCellWithEpisode:episode];
 
     cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
 
@@ -172,10 +189,36 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
 - (void)episodeRefresh:(NSURL *)episodeURL
 {
     WBSEpisode *episode = [self.episodeManager episodeForURL:episodeURL];
+
+    BOOL isNewEpisode = NO;
+    if (self.mutableEpisodeURLToEpisode[episodeURL] == nil) {
+        isNewEpisode = YES;
+    }
     self.mutableEpisodeURLToEpisode[episodeURL] = episode;
-    [self.tableView reloadData];
+
+    NSIndexPath *indexPath = [self indexPathForEpisode:episode];
+
+    [self.tableView beginUpdates];
+    if (isNewEpisode) {
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } else {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [self configureCell:cell withEpisode:episode];
+    }
+    [self.tableView endUpdates];
+//
+//    static NSTimer *timer = nil;
+//    if ([timer isValid]) {
+//        [timer invalidate];
+//    }
+//
+//    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(tableViewReloadData:) userInfo:nil repeats:NO];
 }
 
+- (void)tableViewReloadData:(id)sender
+{
+    [self.tableView reloadData];
+}
 
 
 #pragma mark - IBActions
@@ -234,6 +277,5 @@ static NSString *const kFantorangenEpisodeViewControllerSegue = @"FantorangenEpi
     NSRange range = NSMakeRange(index, [episodes count] - index);
     return [episodes subarrayWithRange:range];
 }
-
 
 @end

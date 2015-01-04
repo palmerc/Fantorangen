@@ -145,6 +145,10 @@ static NSString *const kClientUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7
                     if (episodeURL != nil) {
                         DDLogDebug(@"Adding episode, %@", episode);
                         self.mutableEpisodeURLToEpisode[episode.episodeURL] = episode;
+                        if ([self.delegate respondsToSelector:@selector(episodeRefresh:)]) {
+                            [self.delegate episodeRefresh:episodeURL];
+                        }
+
                         WBSFantorangenWebViewOperation *webViewOperation = [[WBSFantorangenWebViewOperation alloc] initWithURL:episode.episodeURL];
                         webViewOperation.delegate = self;
                         [self.webviewProcessingQueue addOperation:webViewOperation];
